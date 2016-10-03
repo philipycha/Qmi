@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "094CD8CB9FFE87B68B404FD4C2478C135D48E0D6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "094CD8CB9FFE87B68B404FD4C2478C135D48E0D6" : 9223372036854775807,
+    "C039F5EE824BD4AB2F249337409D8753634A35ED" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6DC6C9D9-264C-4958-8B4F-FB93C1AE7F50",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "094CD8CB9FFE87B68B404FD4C2478C135D48E0D6" : "Qmi\/",
+    "C039F5EE824BD4AB2F249337409D8753634A35ED" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Qmi",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Qmi.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/philipycha\/Qmi.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "094CD8CB9FFE87B68B404FD4C2478C135D48E0D6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tevinmaker\/iOS-Student-Autolayout",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C039F5EE824BD4AB2F249337409D8753634A35ED"
+    }
+  ]
+}

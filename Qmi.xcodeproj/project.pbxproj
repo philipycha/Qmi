@@ -10,10 +10,14 @@
 		158568FD1DA2E7C000C03008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158568FC1DA2E7C000C03008 /* main.m */; };
 		158569001DA2E7C000C03008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 158568FF1DA2E7C000C03008 /* AppDelegate.m */; };
 		158569031DA2E7C000C03008 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158569021DA2E7C000C03008 /* ViewController.m */; };
-		158569061DA2E7C000C03008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158569041DA2E7C000C03008 /* Main.storyboard */; };
+		158569061DA2E7C000C03008 /* RestaurantQueue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */; };
 		158569081DA2E7C000C03008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158569071DA2E7C000C03008 /* Assets.xcassets */; };
 		1585690B1DA2E7C000C03008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158569091DA2E7C000C03008 /* LaunchScreen.storyboard */; };
 		4108119F831A7977810A5BB5 /* Pods_Qmi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */; };
+		7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */; };
+		7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3481DA2F1AB0013CCF3 /* Customer.m */; };
+		7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B34B1DA2F26C0013CCF3 /* Resturant.m */; };
+		7D84B34E1DA2F84B0013CCF3 /* CustomerQueue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D84B34D1DA2F84B0013CCF3 /* CustomerQueue.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +27,18 @@
 		158568FF1DA2E7C000C03008 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		158569011DA2E7C000C03008 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		158569021DA2E7C000C03008 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		158569051DA2E7C000C03008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		158569051DA2E7C000C03008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RestaurantQueue.storyboard; sourceTree = "<group>"; };
 		158569071DA2E7C000C03008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1585690A1DA2E7C000C03008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1585690C1DA2E7C000C03008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qmi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueViewCell.h; sourceTree = "<group>"; };
+		7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueViewCell.m; sourceTree = "<group>"; };
+		7D84B3471DA2F1AB0013CCF3 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		7D84B3481DA2F1AB0013CCF3 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		7D84B34A1DA2F26C0013CCF3 /* Resturant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resturant.h; sourceTree = "<group>"; };
+		7D84B34B1DA2F26C0013CCF3 /* Resturant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resturant.m; sourceTree = "<group>"; };
+		7D84B34D1DA2F84B0013CCF3 /* CustomerQueue.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerQueue.storyboard; sourceTree = "<group>"; };
 		D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.release.xcconfig"; sourceTree = "<group>"; };
 		D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,7 +80,14 @@
 				158568FF1DA2E7C000C03008 /* AppDelegate.m */,
 				158569011DA2E7C000C03008 /* ViewController.h */,
 				158569021DA2E7C000C03008 /* ViewController.m */,
-				158569041DA2E7C000C03008 /* Main.storyboard */,
+				7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */,
+				7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */,
+				7D84B3471DA2F1AB0013CCF3 /* Customer.h */,
+				7D84B3481DA2F1AB0013CCF3 /* Customer.m */,
+				7D84B34A1DA2F26C0013CCF3 /* Resturant.h */,
+				7D84B34B1DA2F26C0013CCF3 /* Resturant.m */,
+				158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */,
+				7D84B34D1DA2F84B0013CCF3 /* CustomerQueue.storyboard */,
 				158569071DA2E7C000C03008 /* Assets.xcassets */,
 				158569091DA2E7C000C03008 /* LaunchScreen.storyboard */,
 				1585690C1DA2E7C000C03008 /* Info.plist */,
@@ -167,7 +185,8 @@
 			files = (
 				1585690B1DA2E7C000C03008 /* LaunchScreen.storyboard in Resources */,
 				158569081DA2E7C000C03008 /* Assets.xcassets in Resources */,
-				158569061DA2E7C000C03008 /* Main.storyboard in Resources */,
+				7D84B34E1DA2F84B0013CCF3 /* CustomerQueue.storyboard in Resources */,
+				158569061DA2E7C000C03008 /* RestaurantQueue.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,21 +245,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */,
 				158569031DA2E7C000C03008 /* ViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
+				7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */,
+				7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		158569041DA2E7C000C03008 /* Main.storyboard */ = {
+		158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				158569051DA2E7C000C03008 /* Base */,
 			);
-			name = Main.storyboard;
+			name = RestaurantQueue.storyboard;
 			sourceTree = "<group>";
 		};
 		158569091DA2E7C000C03008 /* LaunchScreen.storyboard */ = {
