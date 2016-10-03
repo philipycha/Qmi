@@ -6,11 +6,11 @@
 //  Copyright © 2016 Philip Ha. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "RestaurantViewController.h"
 #import "Resturant.h"
 #import "QueueViewCell.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) Resturant * resturant;
 
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation ViewController
+@implementation RestaurantViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
