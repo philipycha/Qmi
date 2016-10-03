@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CoreLocation;
+#import "User.h"
 
 @interface Customer : NSObject
 
-@property (nonatomic, strong) NSString * name;
-
+@property (nonatomic) int partySize;
+@property (nonatomic, strong) User * user;
+@property (nonatomic) CLLocation * currentLocation;
 
 @end

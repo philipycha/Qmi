@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Customer.h"
+#import "User.h"
 
 @interface Resturant : NSObject
 
