@@ -21,6 +21,7 @@
 		7D84B3511DA2FBF90013CCF3 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */; };
 		7D84B3541DA30BCC0013CCF3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3531DA30BCC0013CCF3 /* User.m */; };
 		7D84B3561DA31FA20013CCF3 /* CustomerMainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */; };
+		7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E436D1DA351D300350E38 /* LocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		7D84B3521DA30BCC0013CCF3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7D84B3531DA30BCC0013CCF3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerMainView.storyboard; sourceTree = "<group>"; };
+		7D8E436C1DA351D300350E38 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		7D8E436D1DA351D300350E38 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.release.xcconfig"; sourceTree = "<group>"; };
 		D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,8 +115,8 @@
 			children = (
 				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
 				158569021DA2E7C000C03008 /* RestaurantViewController.m */,
-				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
 				7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */,
+				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
 				7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */,
 				7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */,
 			);
@@ -129,6 +132,8 @@
 				7D84B34B1DA2F26C0013CCF3 /* Resturant.m */,
 				7D84B3521DA30BCC0013CCF3 /* User.h */,
 				7D84B3531DA30BCC0013CCF3 /* User.m */,
+				7D8E436C1DA351D300350E38 /* LocationManager.h */,
+				7D8E436D1DA351D300350E38 /* LocationManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				7D84B3541DA30BCC0013CCF3 /* User.m in Sources */,
 				7D84B3511DA2FBF90013CCF3 /* CustomerViewController.m in Sources */,
 				7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */,
+				7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */,
 				158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
