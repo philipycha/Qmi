@@ -13,7 +13,11 @@
 
 @interface Customer : PFObject
 
+<<<<<<< Updated upstream
 @property (nonatomic) NSString* partySize;
+=======
+@property (nonatomic) NSString *partySize;
+>>>>>>> Stashed changes
 @property (nonatomic, strong) User * user;
 @property (nonatomic) CLLocation * currentLocation;
 

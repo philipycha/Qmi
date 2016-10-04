@@ -47,9 +47,7 @@
 //      replace init with initWith... once CoreLocation and User are linked
         
         newCustomer.partySize = sizeOfPartyTextField.text;
-        
-        NSLog(@"%@", newCustomer.partySize);
-        
+
         [self.selectedRestaurant queueCustomer:newCustomer];
         
     }];
