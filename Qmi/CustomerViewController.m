@@ -11,10 +11,11 @@
 @import GoogleMaps;
 #import "LocationManager.h"
 
-@interface CustomerViewController ()
+@interface CustomerViewController () <CLLocationManagerDelegate, GMSMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *joinQButton;
 @property (nonatomic, strong) Resturant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
+@property (nonatomic, retain) IBOutlet GMSMapView *googleMapView;
 
 @end
 
@@ -31,6 +32,7 @@
                                                                  zoom:13];
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.myLocationEnabled = YES;
+
     
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSURL *styleUrl = [mainBundle URLForResource:@"style" withExtension:@"json"];
@@ -48,6 +50,19 @@
     
 
     
+}
+    
+- (void)showCurrentLocation {
+    _googleMapView.myLocationEnabled = YES;
+    [self.locationManager startUpdating];
+}
+    
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:newLocation.coordinate.latitude
+                                                            longitude:newLocation.coordinate.longitude
+                                                                 zoom:17.0];
+    [_googleMapView animateToCameraPosition:camera];
+    //...
 }
 
 - (void)didReceiveMemoryWarning {
