@@ -7,6 +7,7 @@
 //
 
 #import "CustomerViewController.h"
+@import CoreLocation;
 
 @interface CustomerViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *joinQButton;
