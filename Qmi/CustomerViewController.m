@@ -9,10 +9,12 @@
 #import "CustomerViewController.h"
 @import GooglePlaces;
 @import GoogleMaps;
+#import "LocationManager.h"
 
 @interface CustomerViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *joinQButton;
 @property (nonatomic, strong) Resturant * selectedRestaurant;
+@property (nonatomic, strong) LocationManager * locationManager;
 
 @end
 
@@ -20,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.locationManager = [LocationManager sharedLocationManager];
 
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:123.1207
