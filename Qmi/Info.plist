@@ -8,6 +8,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>NSLocationUsageDescription</key>
 	<string>enable location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>enable loation</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

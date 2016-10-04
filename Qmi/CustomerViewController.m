@@ -11,10 +11,11 @@
 @import GoogleMaps;
 #import "LocationManager.h"
 
-@interface CustomerViewController ()
+@interface CustomerViewController () <locationManagerDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *joinQButton;
 @property (nonatomic, strong) Resturant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
+@property (nonatomic, strong) GMSMapView * mapView;
 
 @end
 
@@ -24,10 +25,11 @@
     [super viewDidLoad];
     
     self.locationManager = [LocationManager sharedLocationManager];
-
+    [self.locationManager startLocationMonitoring];
+    self.locationManager.delegate = self;
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:123.1207
-                                                            longitude:49.2827
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
+                                                            longitude:self.locationManager.currentLocation.coordinate.longitude
                                                                  zoom:13];
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.myLocationEnabled = YES;
@@ -44,9 +46,23 @@
     }
     
     mapView.mapStyle = style;
+    self.mapView = mapView;
     self.view = mapView;
     
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude);
+    marker.title = @"ME";
+    marker.map = mapView;
 
+    NSLog(@"user location:%@", mapView.myLocation);
+    NSLog(@"location manager user location:%@", self.locationManager.currentLocation);
+}
+
+-(void)updateCamera{
+    GMSCameraPosition *updatedCamera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
+                                                            longitude:self.locationManager.currentLocation.coordinate.longitude
+                                                                 zoom:13];
+    self.mapView.camera = updatedCamera;
     
 }
 
@@ -76,7 +92,7 @@
         
         newCustomer.partySize = sizeOfPartyTextField.text;        
         NSLog(@"%@", newCustomer.partySize);
-
+        
         
         [self.selectedRestaurant queueCustomer:newCustomer];
         
