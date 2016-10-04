@@ -16,6 +16,15 @@
 
 @implementation LocationManager
 
++(LocationManager *) sharedLocationManager{
+    static LocationManager *sharedLocationManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedLocationManager = [[self alloc]init];
+    });
+    return sharedLocationManager;
+}
+
 
 - (void)startLocationMonitoring{
     if ([CLLocationManager locationServicesEnabled]) {
@@ -25,22 +34,15 @@
             
         }else{
             
-            
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Location services are disabled, Please go into Settings > Privacy > Location to enable them for Play" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            
             
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 //
-                
-                
             }];
             
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 //
-                
-                
             }];
-            
             
             [alertController addAction:ok];
             [alertController addAction:cancel];

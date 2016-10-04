@@ -17,5 +17,6 @@
 
 
 -(void)setupLocationManager;
++(LocationManager *) sharedLocationManager;
 
 @end
