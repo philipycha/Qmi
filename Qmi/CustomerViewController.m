@@ -33,6 +33,7 @@
                                                                  zoom:13];
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.myLocationEnabled = YES;
+
     
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSURL *styleUrl = [mainBundle URLForResource:@"style" withExtension:@"json"];
