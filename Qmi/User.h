@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
-@interface User : NSObject
+@interface User : PFUser
 
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * phoneNumber;
 @property (nonatomic) BOOL isCustomer;
 
-+(User *) sharedUser;
 
 @end

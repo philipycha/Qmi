@@ -7,7 +7,11 @@
 //
 
 #import "AppDelegate.h"
+<<<<<<< HEAD
 #import "User.h"
+=======
+#import <Parse/Parse.h>
+>>>>>>> master
 
 @interface AppDelegate ()
 
@@ -19,7 +23,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+<<<<<<< HEAD
     
+=======
+    //Connect to parse
+    [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        configuration.applicationId = @"Qmi";
+        configuration.server = @"https://qmi.herokuapp.com/parse";
+    }]];
+>>>>>>> master
     
     return YES;
 }

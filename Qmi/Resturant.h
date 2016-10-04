@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 #import "Customer.h"
 #import "User.h"
 
-@interface Resturant : NSObject
+@interface Resturant : PFObject
 
 @property (nonatomic, strong) NSArray <Customer *> * queue;
 

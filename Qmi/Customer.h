@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 @import CoreLocation;
 #import "User.h"
+#import <Parse/Parse.h>
 
-@interface Customer : NSObject
+@interface Customer : PFObject
 
 @property (nonatomic) NSString* partySize;
 @property (nonatomic, strong) User * user;

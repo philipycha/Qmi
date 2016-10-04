@@ -8,16 +8,39 @@
 
 #import "Customer.h"
 
+@interface Customer() <PFSubclassing>
+
+@end
+
 @implementation Customer
 
+<<<<<<< HEAD
 -(instancetype)initWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation{
     self = [super init];
+=======
++(void)load{
+    [self registerSubclass];
+}
+
+
+@dynamic user;
+@dynamic partySize;
+@dynamic currentLocation;
+
+-(instancetype)initWithUser:(User *) user partySize:(int) partySize andCurentLocation:(CLLocation *) currentLocation{
+    self = [super initWithClassName:[Customer parseClassName]];
+>>>>>>> master
     if (self) {
-        _user = [User sharedUser];
-        _partySize = partySize;
-        _currentLocation = currentLocation;
+        self.user = [User currentUser];
+        self.partySize = partySize;
+        self.currentLocation = currentLocation;
     }
     return self;
+}
+
++(NSString *)parseClassName
+{
+    return @"Customer";
 }
 
 @end
