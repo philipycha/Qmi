@@ -13,7 +13,7 @@
 
 @interface Customer : PFObject
 
-@property (nonatomic) int partySize;
+@property (nonatomic) NSString * partySize;
 @property (nonatomic, strong) User * user;
 @property (nonatomic) CLLocation * currentLocation;
 
