@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+@import GoogleMaps;
+@import GooglePlaces;
 
 @interface AppDelegate ()
 
@@ -24,6 +26,10 @@
         configuration.applicationId = @"Qmi";
         configuration.server = @"https://qmi.herokuapp.com/parse";
     }]];
+    
+    //Google Maps API Keys
+    [GMSPlacesClient provideAPIKey:@"AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM"];
+    [GMSServices provideAPIKey:@"AIzaSyCS_ydZKmNjxd6nzKQ6jxX5wWihgvkZovk"];
     
     return YES;
 }
