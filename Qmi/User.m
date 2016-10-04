@@ -8,16 +8,14 @@
 
 #import "User.h"
 
+@interface User() <PFSubclassing>
+
+@end
+
 @implementation User
 
-+(User *) sharedUser {
-    static User *sharedUser;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedUser = [[User alloc]init];
-    });
-    return sharedUser;
-}
-
+@dynamic name;
+@dynamic phoneNumber;
+@dynamic isCustomer;
 
 @end
