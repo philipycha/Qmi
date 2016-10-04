@@ -10,9 +10,7 @@
 
 @interface LocationManager () <CLLocationManagerDelegate>
 
-
 @end
-
 
 @implementation LocationManager
 
@@ -20,7 +18,7 @@
     static LocationManager *sharedLocationManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedLocationManager = [[self alloc]init];
+        sharedLocationManager = [[LocationManager alloc]init];
     });
     return sharedLocationManager;
 }
@@ -68,6 +66,23 @@
     
 }
 
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    // If it's a relatively recent event, turn off updates to save power.
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (howRecent < 15.0) {
+        // If the event is recent, do something with it.
+        NSLog(@"latitude %+.6f, longitude %+.6f\n",
+              location.coordinate.latitude,
+              location.coordinate.longitude);
+        self.currentLocation = location;
+        [self.delegate updateCamera];
+    }
+    
+}
 
 
 @end

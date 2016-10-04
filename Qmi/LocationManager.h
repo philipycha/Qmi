@@ -10,12 +10,18 @@
 @import CoreLocation;
 @import UIKit;
 
+@protocol locationManagerDelegate <NSObject>
+
+-(void)updateCamera;
+
+@end
+
 @interface LocationManager : NSObject
 
 @property (nonatomic) CLLocationManager * locationManager;
 @property (nonatomic) CLLocation * currentLocation;
-
-
+@property (nonatomic) id <locationManagerDelegate> delegate;
+- (void)startLocationMonitoring;
 -(void)setupLocationManager;
 +(LocationManager *) sharedLocationManager;
 
