@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString * phoneNumber;
 @property (nonatomic) BOOL isCustomer;
 
++(User *) sharedUser;
 
 @end
