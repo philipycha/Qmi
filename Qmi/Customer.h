@@ -12,10 +12,10 @@
 
 @interface Customer : NSObject
 
-@property (nonatomic) int partySize;
+@property (nonatomic) NSString* partySize;
 @property (nonatomic, strong) User * user;
 @property (nonatomic) CLLocation * currentLocation;
 
--(instancetype)initWithUser:(User *) user partySize:(int) partySize andCurentLocation:(CLLocation *) currentLocation;
+-(instancetype)initWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation;
 
 @end

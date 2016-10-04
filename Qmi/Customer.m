@@ -10,7 +10,7 @@
 
 @implementation Customer
 
--(instancetype)initWithUser:(User *) user partySize:(int) partySize andCurentLocation:(CLLocation *) currentLocation{
+-(instancetype)initWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation{
     self = [super init];
     if (self) {
         _user = [User sharedUser];
