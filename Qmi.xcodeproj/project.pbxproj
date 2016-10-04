@@ -84,18 +84,8 @@
 			children = (
 				158568FE1DA2E7C000C03008 /* AppDelegate.h */,
 				158568FF1DA2E7C000C03008 /* AppDelegate.m */,
-				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
-				158569021DA2E7C000C03008 /* RestaurantViewController.m */,
-				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
-				7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */,
-				7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */,
-				7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */,
-				7D84B3471DA2F1AB0013CCF3 /* Customer.h */,
-				7D84B3481DA2F1AB0013CCF3 /* Customer.m */,
-				7D84B34A1DA2F26C0013CCF3 /* Resturant.h */,
-				7D84B34B1DA2F26C0013CCF3 /* Resturant.m */,
-				7D84B3521DA30BCC0013CCF3 /* User.h */,
-				7D84B3531DA30BCC0013CCF3 /* User.m */,
+				28B6A1B31DA330A100A0AD33 /* Controller */,
+				28B6A1B41DA330C800A0AD33 /* Model */,
 				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
 				158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */,
 				158569071DA2E7C000C03008 /* Assets.xcassets */,
@@ -112,6 +102,32 @@
 				158568FC1DA2E7C000C03008 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28B6A1B31DA330A100A0AD33 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
+				158569021DA2E7C000C03008 /* RestaurantViewController.m */,
+				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
+				7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */,
+				7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */,
+				7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		28B6A1B41DA330C800A0AD33 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7D84B3471DA2F1AB0013CCF3 /* Customer.h */,
+				7D84B3481DA2F1AB0013CCF3 /* Customer.m */,
+				7D84B34A1DA2F26C0013CCF3 /* Resturant.h */,
+				7D84B34B1DA2F26C0013CCF3 /* Resturant.m */,
+				7D84B3521DA30BCC0013CCF3 /* User.h */,
+				7D84B3531DA30BCC0013CCF3 /* User.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		D6BAF4C92EAAC0E971C11900 /* Pods */ = {
