@@ -5,6 +5,69 @@
       location = "group:Qmi.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Qmi/AppDelegate.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/AppDelegate.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Assets.xcassets">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Base.lproj">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Customer.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Customer.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/CustomerMainView.storyboard">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/CustomerViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/CustomerViewController.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Info.plist">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/LocationManager.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/LocationManager.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/main.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/QueueViewCell.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/QueueViewCell.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/RestaurantViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/RestaurantViewController.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Resturant.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/Resturant.m">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/User.h">
+   </FileRef>
+   <FileRef
+      location = "group:Qmi/User.m">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
