@@ -7,6 +7,8 @@
 //
 
 #import "CustomerViewController.h"
+@import GooglePlaces;
+@import GoogleMaps;
 
 @interface CustomerViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *joinQButton;
@@ -18,7 +20,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:123.1207
+                                                            longitude:49.2827
+                                                                 zoom:13];
+    GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView.myLocationEnabled = YES;
+    
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSURL *styleUrl = [mainBundle URLForResource:@"style" withExtension:@"json"];
+    NSError *error;
+    
+    // Set the map style by passing the URL for style.json.
+    GMSMapStyle *style = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
+    
+    if (!style) {
+        NSLog(@"The style definition could not be loaded: %@", error);
+    }
+    
+    mapView.mapStyle = style;
+    self.view = mapView;
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +70,7 @@
         Customer *newCustomer = [[Customer alloc]init];
 //      replace init with initWith... once CoreLocation and User are linked
         
-        newCustomer.partySize = sizeOfPartyTextField.text
+        newCustomer.partySize = sizeOfPartyTextField.text;
         
         NSLog(@"%@", newCustomer.partySize);
         
