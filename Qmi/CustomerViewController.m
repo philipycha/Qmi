@@ -9,6 +9,8 @@
 #import "CustomerViewController.h"
 
 @interface CustomerViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *joinQButton;
+@property (nonatomic, strong) Resturant * selectedRestaurant;
 
 @end
 
@@ -22,6 +24,39 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)joinQButtonPressed:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Party Info" message:NULL preferredStyle:UIAlertControllerStyleAlert];
+    
+ 
+    __block UITextField *sizeOfPartyTextField;
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        
+        sizeOfPartyTextField = textField;
+        
+    }];
+    
+    
+    UIAlertAction * action = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+
+        Customer *newCustomer = [[Customer alloc]init];
+//      replace init with initWith... once CoreLocation and User are linked
+        
+        newCustomer.partySize = sizeOfPartyTextField.text
+        
+        NSLog(@"%@", newCustomer.partySize);
+        
+        [self.selectedRestaurant queueCustomer:newCustomer];
+        
+    }];
+    
+    [alertController addAction:action];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+    
 }
 
 /*

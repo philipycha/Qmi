@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSArray <Customer *> * queue;
 
+-(void) queueCustomer:(Customer *) customer;
+
 @end

@@ -13,7 +13,7 @@
 -(instancetype)initWithUser:(User *) user partySize:(int) partySize andCurentLocation:(CLLocation *) currentLocation{
     self = [super init];
     if (self) {
-        _user = user;
+        _user = [User sharedUser];
         _partySize = partySize;
         _currentLocation = currentLocation;
     }
