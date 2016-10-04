@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "User.h"
 @import GoogleMaps;
 @import GooglePlaces;
 
@@ -30,6 +31,35 @@
     //Google Maps API Keys
     [GMSPlacesClient provideAPIKey:@"AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM"];
     [GMSServices provideAPIKey:@"AIzaSyCS_ydZKmNjxd6nzKQ6jxX5wWihgvkZovk"];
+    
+    
+    //Check if there is a user cached on the device and send them to the correct storyboard
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    
+    
+    if([User currentUser])
+    {
+        User *currentUser = [User currentUser];
+        
+        
+        
+        if(currentUser.isCustomer){
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CustomerMainView" bundle:[NSBundle mainBundle]];
+            
+            self.window.rootViewController = [storyboard instantiateInitialViewController];
+
+        }else{
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RestaurantQueue" bundle:[NSBundle mainBundle]];
+            self.window.rootViewController = [storyboard instantiateInitialViewController];
+        }
+    }else{
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LogIn" bundle:[NSBundle mainBundle]];
+        self.window.rootViewController = [storyboard instantiateInitialViewController];
+    }
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

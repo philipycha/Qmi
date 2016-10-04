@@ -14,6 +14,8 @@
 		158569081DA2E7C000C03008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158569071DA2E7C000C03008 /* Assets.xcassets */; };
 		1585690B1DA2E7C000C03008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158569091DA2E7C000C03008 /* LaunchScreen.storyboard */; };
 		15B49D1D1DA34CDC00EFF6DE /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 15B49D1C1DA34CDC00EFF6DE /* style.json */; };
+		28251C4B1DA43565009156AB /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28251C4A1DA43565009156AB /* LogIn.storyboard */; };
+		28251C4E1DA43571009156AB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28251C4D1DA43571009156AB /* LogInViewController.m */; };
 		4108119F831A7977810A5BB5 /* Pods_Qmi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */; };
 		7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */; };
 		7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3481DA2F1AB0013CCF3 /* Customer.m */; };
@@ -36,6 +38,9 @@
 		1585690A1DA2E7C000C03008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1585690C1DA2E7C000C03008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B49D1C1DA34CDC00EFF6DE /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = SOURCE_ROOT; };
+		28251C4A1DA43565009156AB /* LogIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
+		28251C4C1DA43571009156AB /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		28251C4D1DA43571009156AB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qmi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueViewCell.h; sourceTree = "<group>"; };
 		7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueViewCell.m; sourceTree = "<group>"; };
@@ -92,10 +97,7 @@
 				15B49D1C1DA34CDC00EFF6DE /* style.json */,
 				28B6A1B31DA330A100A0AD33 /* Controller */,
 				28B6A1B41DA330C800A0AD33 /* Model */,
-				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
-				158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */,
-				158569071DA2E7C000C03008 /* Assets.xcassets */,
-				158569091DA2E7C000C03008 /* LaunchScreen.storyboard */,
+				28251C491DA43553009156AB /* View */,
 				1585690C1DA2E7C000C03008 /* Info.plist */,
 				158568FB1DA2E7C000C03008 /* Supporting Files */,
 			);
@@ -110,9 +112,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		28251C491DA43553009156AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28251C4A1DA43565009156AB /* LogIn.storyboard */,
+				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
+				158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */,
+				158569071DA2E7C000C03008 /* Assets.xcassets */,
+				158569091DA2E7C000C03008 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		28B6A1B31DA330A100A0AD33 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				28251C4C1DA43571009156AB /* LogInViewController.h */,
+				28251C4D1DA43571009156AB /* LogInViewController.m */,
 				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
 				158569021DA2E7C000C03008 /* RestaurantViewController.m */,
 				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
@@ -221,6 +237,7 @@
 				1585690B1DA2E7C000C03008 /* LaunchScreen.storyboard in Resources */,
 				158569081DA2E7C000C03008 /* Assets.xcassets in Resources */,
 				15B49D1D1DA34CDC00EFF6DE /* style.json in Resources */,
+				28251C4B1DA43565009156AB /* LogIn.storyboard in Resources */,
 				158569061DA2E7C000C03008 /* RestaurantQueue.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +303,7 @@
 				7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */,
 				158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
+				28251C4E1DA43571009156AB /* LogInViewController.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
 				7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */,
 				7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */,
