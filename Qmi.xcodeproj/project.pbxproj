@@ -20,6 +20,7 @@
 		7D84B3511DA2FBF90013CCF3 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */; };
 		7D84B3541DA30BCC0013CCF3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3531DA30BCC0013CCF3 /* User.m */; };
 		7D84B3561DA31FA20013CCF3 /* CustomerMainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */; };
+		7D84B3591DA335BC0013CCF3 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3581DA335BC0013CCF3 /* LocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		7D84B3521DA30BCC0013CCF3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7D84B3531DA30BCC0013CCF3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerMainView.storyboard; sourceTree = "<group>"; };
+		7D84B3571DA335BC0013CCF3 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		7D84B3581DA335BC0013CCF3 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.release.xcconfig"; sourceTree = "<group>"; };
 		D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +87,25 @@
 			children = (
 				158568FE1DA2E7C000C03008 /* AppDelegate.h */,
 				158568FF1DA2E7C000C03008 /* AppDelegate.m */,
+<<<<<<< HEAD
+				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
+				158569021DA2E7C000C03008 /* RestaurantViewController.m */,
+				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
+				7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */,
+				7D84B3571DA335BC0013CCF3 /* LocationManager.h */,
+				7D84B3581DA335BC0013CCF3 /* LocationManager.m */,
+				7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */,
+				7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */,
+				7D84B3471DA2F1AB0013CCF3 /* Customer.h */,
+				7D84B3481DA2F1AB0013CCF3 /* Customer.m */,
+				7D84B34A1DA2F26C0013CCF3 /* Resturant.h */,
+				7D84B34B1DA2F26C0013CCF3 /* Resturant.m */,
+				7D84B3521DA30BCC0013CCF3 /* User.h */,
+				7D84B3531DA30BCC0013CCF3 /* User.m */,
+=======
 				28B6A1B31DA330A100A0AD33 /* Controller */,
 				28B6A1B41DA330C800A0AD33 /* Model */,
+>>>>>>> master
 				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
 				158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */,
 				158569071DA2E7C000C03008 /* Assets.xcassets */,
@@ -181,7 +201,7 @@
 				TargetAttributes = {
 					158568F71DA2E7BF00C03008 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = B9P6859THW;
+						DevelopmentTeam = 3PXE3KNKL4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -274,6 +294,7 @@
 				7D84B3541DA30BCC0013CCF3 /* User.m in Sources */,
 				7D84B3511DA2FBF90013CCF3 /* CustomerViewController.m in Sources */,
 				7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */,
+				7D84B3591DA335BC0013CCF3 /* LocationManager.m in Sources */,
 				158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
@@ -397,7 +418,7 @@
 			baseConfigurationReference = D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B9P6859THW;
+				DEVELOPMENT_TEAM = 3PXE3KNKL4;
 				INFOPLIST_FILE = Qmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Philip.Qmi;
@@ -410,7 +431,7 @@
 			baseConfigurationReference = D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B9P6859THW;
+				DEVELOPMENT_TEAM = 3PXE3KNKL4;
 				INFOPLIST_FILE = Qmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Philip.Qmi;
