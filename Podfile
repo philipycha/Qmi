@@ -5,6 +5,9 @@ target 'Qmi' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
    use_frameworks!
 pod 'Parse'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 
   # Pods for Qmi
 
