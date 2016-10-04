@@ -46,7 +46,21 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
+    if([User logInWithUsername:self.emailTextField.text password:self.passwordTextField.text]){
+        
+        User *currentUser = [User currentUser];
+        
+        if(currentUser.isCustomer)
+        {
+            [self performSegueWithIdentifier:@"ShowCustomerMainView" sender:self];
+        }
+        else{
+            [self performSegueWithIdentifier:@"ShowRestaurantQueue" sender:self];
+        }
     
+    }else{
+        [self presentBasicAlertWithTitle:@"Login Failed" andMessage:@""];
+    }
 }
 
 
@@ -105,11 +119,11 @@
             if([newUser signUp]){
                 [self performSegueWithIdentifier:@"ShowCustomerMainView" sender:self];
             }else{
-                [self presentSignUpFailedAlert:@"Username is taken"];
+                [self presentBasicAlertWithTitle:@"Sign Up Failed" andMessage:@"Username is taken"];
             }
         }
         else{
-            [self presentSignUpFailedAlert:@"Passwords do not match"];
+            [self presentBasicAlertWithTitle:@"Sign Up Failed" andMessage:@"Passwords do not match"];
         }
         
     }]];
@@ -122,8 +136,8 @@
     
 }
 
--(void)presentSignUpFailedAlert:(NSString*)message{
-    UIAlertController *signUpFailedAlert = [UIAlertController alertControllerWithTitle:@"Sign Up Failed" message:message preferredStyle:UIAlertControllerStyleAlert];
+-(void)presentBasicAlertWithTitle:(NSString *)title andMessage:(NSString*)message{
+    UIAlertController *signUpFailedAlert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [signUpFailedAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         

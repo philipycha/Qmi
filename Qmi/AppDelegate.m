@@ -34,6 +34,11 @@
     
     
     //Check if there is a user cached on the device and send them to the correct storyboard
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    
+    
     if([User currentUser])
     {
         User *currentUser = [User currentUser];
@@ -43,16 +48,18 @@
         if(currentUser.isCustomer){
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CustomerMainView" bundle:[NSBundle mainBundle]];
             
-            [storyboard instantiateInitialViewController];
+            self.window.rootViewController = [storyboard instantiateInitialViewController];
 
         }else{
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RestaurantQueue" bundle:[NSBundle mainBundle]];
-            [storyboard instantiateInitialViewController];
+            self.window.rootViewController = [storyboard instantiateInitialViewController];
         }
     }else{
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:[NSBundle mainBundle]];
-        [storyboard instantiateInitialViewController];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LogIn" bundle:[NSBundle mainBundle]];
+        self.window.rootViewController = [storyboard instantiateInitialViewController];
     }
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
