@@ -22,6 +22,8 @@
 @dynamic user;
 @dynamic partySize;
 @dynamic currentLocation;
+@dynamic queueRestaurant;
+@dynamic queueNum;
 
 +(Customer *)customerWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation{
     Customer *newCustomer = [Customer objectWithClassName:[Customer parseClassName]];

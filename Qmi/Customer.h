@@ -11,12 +11,17 @@
 #import "User.h"
 #import <Parse/Parse.h>
 
+@class Restaurant;
+
 @interface Customer : PFObject
 
 @property (nonatomic) NSString * partySize;
 @property (nonatomic, strong) User * user;
 @property (nonatomic) CLLocation * currentLocation;
+@property (nonatomic) Restaurant *queueRestaurant;
+@property (nonatomic, assign) int queueNum;
 
 +(Customer *)customerWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation;
++(NSString *)parseClassName;
 
 @end

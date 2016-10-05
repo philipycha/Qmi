@@ -11,7 +11,7 @@
 #import "Customer.h"
 #import "User.h"
 
-@interface Resturant : PFObject
+@interface Restaurant : PFObject
 
 @property (nonatomic, strong) NSArray <Customer *> * queue;
 
