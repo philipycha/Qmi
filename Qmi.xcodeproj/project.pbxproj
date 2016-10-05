@@ -18,6 +18,7 @@
 		28251C4B1DA43565009156AB /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28251C4A1DA43565009156AB /* LogIn.storyboard */; };
 		28251C4E1DA43571009156AB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28251C4D1DA43571009156AB /* LogInViewController.m */; };
 		4108119F831A7977810A5BB5 /* Pods_Qmi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */; };
+		7D5C87181DA479B200C26093 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */; };
 		7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */; };
 		7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3481DA2F1AB0013CCF3 /* Customer.m */; };
 		7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B34B1DA2F26C0013CCF3 /* Resturant.m */; };
@@ -45,6 +46,7 @@
 		28251C4C1DA43571009156AB /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		28251C4D1DA43571009156AB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qmi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
 		7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueViewCell.h; sourceTree = "<group>"; };
 		7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueViewCell.m; sourceTree = "<group>"; };
 		7D84B3471DA2F1AB0013CCF3 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		28251C491DA43553009156AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */,
 				28251C4A1DA43565009156AB /* LogIn.storyboard */,
 				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
 				158569041DA2E7C000C03008 /* RestaurantQueue.storyboard */,
@@ -210,7 +213,7 @@
 				TargetAttributes = {
 					158568F71DA2E7BF00C03008 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = B9P6859THW;
+						DevelopmentTeam = MV6A58NLUE;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D84B3561DA31FA20013CCF3 /* CustomerMainView.storyboard in Resources */,
+				7D5C87181DA479B200C26093 /* CustomInfoWindow.xib in Resources */,
 				1585690B1DA2E7C000C03008 /* LaunchScreen.storyboard in Resources */,
 				158569081DA2E7C000C03008 /* Assets.xcassets in Resources */,
 				15B49D1D1DA34CDC00EFF6DE /* style.json in Resources */,
@@ -431,10 +435,10 @@
 			baseConfigurationReference = D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B9P6859THW;
+				DEVELOPMENT_TEAM = MV6A58NLUE;
 				INFOPLIST_FILE = Qmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Philip.Qmi;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.qmi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -444,10 +448,10 @@
 			baseConfigurationReference = D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B9P6859THW;
+				DEVELOPMENT_TEAM = MV6A58NLUE;
 				INFOPLIST_FILE = Qmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Philip.Qmi;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.qmi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
