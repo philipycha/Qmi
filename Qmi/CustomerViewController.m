@@ -84,9 +84,10 @@
 
 
 -(void)updateCamera{
-    GMSCameraPosition *updatedCamera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
-                                                            longitude:self.locationManager.currentLocation.coordinate.longitude
-                                                                 zoom:15];
+    GMSCameraPosition *updatedCamera = [GMSCameraPosition
+                                        cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
+                                        longitude:self.locationManager.currentLocation.coordinate.longitude
+                                        zoom:15];
     self.mapView.camera = updatedCamera;
     
 }
@@ -145,6 +146,8 @@
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(restaurant.coordinate.latitude, restaurant.coordinate.longitude);
         GMSMarker *restaurantMarker = [GMSMarker markerWithPosition:position];
         restaurantMarker.title = restaurant.name;
+        restaurantMarker.icon = [GMSMarker markerImageWithColor:[UIColor purpleColor]];
+        restaurantMarker.opacity = 0.75;
         restaurantMarker.snippet = @"Population: 8,174,100";
         restaurantMarker.map = self.mapView;
         
