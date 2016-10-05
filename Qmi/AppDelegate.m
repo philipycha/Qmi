@@ -11,8 +11,9 @@
 #import "User.h"
 @import GoogleMaps;
 @import GooglePlaces;
+@import UserNotifications;
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -37,6 +38,11 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
+    //push notifications
+    
+    
+    [self registerForRemoteNotifications];
+
     
     
     if([User currentUser])
@@ -49,7 +55,7 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CustomerMainView" bundle:[NSBundle mainBundle]];
             
             self.window.rootViewController = [storyboard instantiateInitialViewController];
-
+            
         }else{
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RestaurantQueue" bundle:[NSBundle mainBundle]];
             self.window.rootViewController = [storyboard instantiateInitialViewController];
@@ -64,6 +70,39 @@
     return YES;
 }
 
+# pragma Mark - Push Notifications
+
+- (void)registerForRemoteNotifications {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
+        if(!error){
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
+    }];
+}
+
+//Called when a notification is delivered to a foreground app.
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    NSLog(@"User Info : %@",notification.request.content.userInfo);
+    completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
+}
+
+//Called to let your app know which action was selected by the user for a given notification.
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
+    NSLog(@"User Info : %@",response.notification.request.content.userInfo);
+    completionHandler();
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    [PFPush handlePush:userInfo];
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
