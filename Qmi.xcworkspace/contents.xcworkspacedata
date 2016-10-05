@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/philipha/Desktop/Qmi/Qmi/LighthouseLabs.gpx">
+   </FileRef>
+   <FileRef
       location = "group:Qmi.xcodeproj">
    </FileRef>
    <FileRef

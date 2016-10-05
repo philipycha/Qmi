@@ -17,6 +17,8 @@
 @property (nonatomic) NSString * MOREBULLSHIT;
 @property (nonatomic) NSString * MOREMOREBULLSHIT;
 @property (nonatomic) NSString * MOREMOREMOREBULLSHIT;
+@property (nonatomic) NSString * MOREMOREMOREMOREBULLSHIT;
+@property (nonatomic) NSString * MOREMOREMOREMOREMOREBULLSHIT;
 
 
 @end

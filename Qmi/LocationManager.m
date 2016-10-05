@@ -33,9 +33,9 @@
             
         }else{
             
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Location services are disabled, Please go into Settings > Privacy > Location to enable them for Play" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Location services are disabled, Please go into Settings > Privacy > Location to enable them for Usage" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             
-            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Accept" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 //
             }];
             
@@ -57,13 +57,12 @@
         
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-        _locationManager.distanceFilter = 10;
+        _locationManager.distanceFilter = 50;
         _locationManager.delegate = self;
         [_locationManager requestWhenInUseAuthorization];
     }
     
     [_locationManager startUpdatingLocation];
-    
     
 }
 
@@ -74,7 +73,7 @@
     CLLocation* location = [locations lastObject];
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (howRecent < 15.0) {
+    if (howRecent < 25.0) {
         // If the event is recent, do something with it.
         NSLog(@"latitude %+.6f, longitude %+.6f\n",
               location.coordinate.latitude,
