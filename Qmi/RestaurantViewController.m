@@ -14,6 +14,7 @@
 
 @property (nonatomic) Resturant * resturant;
 @property (nonatomic) NSString * BULLSHIT;
+@property (nonatomic) NSString * MOREBULLSHIT;
 
 
 @end
