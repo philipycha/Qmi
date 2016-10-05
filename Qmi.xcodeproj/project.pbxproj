@@ -15,6 +15,7 @@
 		158569081DA2E7C000C03008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158569071DA2E7C000C03008 /* Assets.xcassets */; };
 		1585690B1DA2E7C000C03008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158569091DA2E7C000C03008 /* LaunchScreen.storyboard */; };
 		15B49D1D1DA34CDC00EFF6DE /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 15B49D1C1DA34CDC00EFF6DE /* style.json */; };
+		15F7CDCB1DA4947000DE1033 /* CustomInfoWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F7CDCA1DA4947000DE1033 /* CustomInfoWindowView.m */; };
 		28251C4B1DA43565009156AB /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28251C4A1DA43565009156AB /* LogIn.storyboard */; };
 		28251C4E1DA43571009156AB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28251C4D1DA43571009156AB /* LogInViewController.m */; };
 		4108119F831A7977810A5BB5 /* Pods_Qmi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */; };
@@ -42,6 +43,8 @@
 		1585690A1DA2E7C000C03008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1585690C1DA2E7C000C03008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B49D1C1DA34CDC00EFF6DE /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = SOURCE_ROOT; };
+		15F7CDC91DA4947000DE1033 /* CustomInfoWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoWindowView.h; sourceTree = "<group>"; };
+		15F7CDCA1DA4947000DE1033 /* CustomInfoWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoWindowView.m; sourceTree = "<group>"; };
 		28251C4A1DA43565009156AB /* LogIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		28251C4C1DA43571009156AB /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		28251C4D1DA43571009156AB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 		28B6A1B31DA330A100A0AD33 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				15F7CDC91DA4947000DE1033 /* CustomInfoWindowView.h */,
+				15F7CDCA1DA4947000DE1033 /* CustomInfoWindowView.m */,
 				28251C4C1DA43571009156AB /* LogInViewController.h */,
 				28251C4D1DA43571009156AB /* LogInViewController.m */,
 				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
@@ -324,6 +329,7 @@
 				15011CE21DA474B2003B2F7F /* GoogleMapsRestaurant.m in Sources */,
 				7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */,
 				7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */,
+				15F7CDCB1DA4947000DE1033 /* CustomInfoWindowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

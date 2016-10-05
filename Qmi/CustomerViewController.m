@@ -11,8 +11,6 @@
 @import GooglePlaces;
 @import GoogleMaps;
 
-//https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+VancouverBC&sensor=true&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM
-//JSON URL for VANCOUVER RESTAURANTS
 #import "LocationManager.h"
 #import "CustomInfoWindowView.h"
 
