@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15011CE21DA474B2003B2F7F /* GoogleMapsRestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 15011CE11DA474B2003B2F7F /* GoogleMapsRestaurant.m */; };
 		158568FD1DA2E7C000C03008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158568FC1DA2E7C000C03008 /* main.m */; };
 		158569001DA2E7C000C03008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 158568FF1DA2E7C000C03008 /* AppDelegate.m */; };
 		158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158569021DA2E7C000C03008 /* RestaurantViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15011CE01DA474B2003B2F7F /* GoogleMapsRestaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapsRestaurant.h; sourceTree = "<group>"; };
+		15011CE11DA474B2003B2F7F /* GoogleMapsRestaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsRestaurant.m; sourceTree = "<group>"; };
 		158568F81DA2E7C000C03008 /* Qmi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qmi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158568FC1DA2E7C000C03008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		158568FE1DA2E7C000C03008 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				158569021DA2E7C000C03008 /* RestaurantViewController.m */,
 				7D84B34F1DA2FBF90013CCF3 /* CustomerViewController.h */,
 				7D84B3501DA2FBF90013CCF3 /* CustomerViewController.m */,
+				15011CE01DA474B2003B2F7F /* GoogleMapsRestaurant.h */,
+				15011CE11DA474B2003B2F7F /* GoogleMapsRestaurant.m */,
 				7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */,
 				7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */,
 			);
@@ -305,6 +310,7 @@
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
 				28251C4E1DA43571009156AB /* LogInViewController.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
+				15011CE21DA474B2003B2F7F /* GoogleMapsRestaurant.m in Sources */,
 				7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */,
 				7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */,
 			);

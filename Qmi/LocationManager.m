@@ -25,6 +25,7 @@
 
 
 - (void)startLocationMonitoring{
+    
     if ([CLLocationManager locationServicesEnabled]) {
         
         if ((!([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted)) || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined){

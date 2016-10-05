@@ -7,15 +7,23 @@
 //
 
 #import "CustomerViewController.h"
+#import "GoogleMapsRestaurant.h"
 @import GooglePlaces;
 @import GoogleMaps;
+
+//https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+VancouverBC&sensor=true&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM
+//JSON URL for VANCOUVER RESTAURANTS
 #import "LocationManager.h"
 
-@interface CustomerViewController () <locationManagerDelegate>
+@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UIButton *joinQButton;
 @property (nonatomic, strong) Resturant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
 @property (nonatomic, strong) GMSMapView * mapView;
+@property (nonatomic, strong) NSURLSession * markerSession;
+@property (nonatomic, strong) NSMutableArray *restaurants;
+
 
 @end
 
@@ -30,7 +38,7 @@
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
                                                             longitude:self.locationManager.currentLocation.coordinate.longitude
-                                                                 zoom:13];
+                                                                 zoom:15];
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.myLocationEnabled = YES;
 
@@ -50,22 +58,78 @@
     self.mapView = mapView;
     self.view = mapView;
     
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude);
-    marker.title = @"ME";
-    marker.map = mapView;
+    mapView.settings.compassButton = YES;
+    mapView.settings.myLocationButton = YES;
 
     NSLog(@"user location:%@", mapView.myLocation);
     NSLog(@"location manager user location:%@", self.locationManager.currentLocation);
-}
+    
+    [[GMSPlacesClient sharedClient] currentPlaceWithCallback:^(GMSPlaceLikelihoodList * _Nullable likelihoodList, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Current Place error %@", [error localizedDescription]);
+            return;
+        }
+        
+        for (GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods) {
+            GMSPlace* place = likelihood.place;
+            NSLog(@"Current Place name %@ at likelihood %g", place.name, likelihood.likelihood);
+            NSLog(@"Current Place address %@", place.formattedAddress);
+            NSLog(@"Current Place attributions %@", place.attributions);
+            NSLog(@"Current PlaceID %@", place.placeID);
+        }
+    }];
+    
+ }
+
 
 -(void)updateCamera{
     GMSCameraPosition *updatedCamera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
                                                             longitude:self.locationManager.currentLocation.coordinate.longitude
-                                                                 zoom:13];
+                                                                 zoom:15];
     self.mapView.camera = updatedCamera;
     
 }
+
+-(void)getRestaurantLocation:(NSString*)location
+{
+    NSString *urlString = @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+VancouverBC&sensor=true&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM";
+    urlString = [urlString stringByAppendingString:location];
+    urlString = [urlString stringByAppendingString:@"&results="];
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if(!error)
+        {
+            NSError *jsonError = nil;
+            NSDictionary *dictFromJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSArray *restaurantsFromJSONDict = [dictFromJSON objectForKey:@"results"];
+            self.restaurants = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *restaurant in restaurantsFromJSONDict)
+            {
+                NSString *name = [restaurant objectForKey:@"name"];
+                NSString *address = [restaurant objectForKey:@"address"];
+                NSNumber *lat = [restaurant objectForKey:@"lat"];
+                NSNumber *lng = [restaurant objectForKey:@"lng"];
+                
+                CLLocationCoordinate2D restaurantLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
+                GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address andCoordinate:restaurantLocation];
+                                                       
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+                
+            }
+        }
+    }];
+    [dataTask resume];
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -104,6 +168,8 @@
 
     
 }
+
+
 
 /*
 #pragma mark - Navigation
