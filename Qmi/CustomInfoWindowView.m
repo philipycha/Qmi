@@ -16,11 +16,6 @@
 @end
 
 @implementation CustomInfoWindowView
-- (IBAction)JoinQButtonPressed:(UIButton *)sender {
-    
-    [self.delegate joinQButtonPressed];
-    
-}
 
 /*
 // Only override drawRect: if you perform custom drawing.
