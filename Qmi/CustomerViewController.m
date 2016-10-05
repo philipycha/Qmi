@@ -193,6 +193,11 @@
         
     }];
     
+    UIAlertAction * closeAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alertController addAction:closeAction];
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
     

@@ -13,13 +13,6 @@
 @interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) Resturant * resturant;
-@property (nonatomic) NSString * BULLSHIT;
-@property (nonatomic) NSString * MOREBULLSHIT;
-@property (nonatomic) NSString * MOREMOREBULLSHIT;
-@property (nonatomic) NSString * MOREMOREMOREBULLSHIT;
-@property (nonatomic) NSString * MOREMOREMOREMOREBULLSHIT;
-@property (nonatomic) NSString * MOREMOREMOREMOREMOREBULLSHIT;
-
 
 @end
 
