@@ -160,7 +160,7 @@
 
 -(UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
     CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
-    infoWindow.RestaurantNameLabel.text = @"";
+    infoWindow.RestaurantNameLabel.text = marker.title;
     infoWindow.QueueSizeLabel.text = @"2";
     infoWindow.delegate = self;
     return infoWindow;

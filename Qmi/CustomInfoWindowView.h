@@ -17,7 +17,6 @@
 @interface CustomInfoWindowView : UIView
 @property (strong, nonatomic) IBOutlet UILabel *RestaurantNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *QueueSizeLabel;
-@property (strong, nonatomic) IBOutlet UIButton *JoinQButton;
 @property (nonatomic, strong) id <InfoWindowDelegate> delegate;
 
 @end
