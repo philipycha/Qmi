@@ -8,48 +8,20 @@
 
 #import "Restaurant.h"
 
-@interface Resturant() <PFSubclassing>
+@interface Restaurant() <PFSubclassing>
 
-@property (nonatomic) PFRelation <Customer *> *queueRelation;
+//@property (nonatomic) PFRelation <Customer *> *queueRelation;
 
 @end
 
-@implementation Resturant
+@implementation Restaurant
+
+@dynamic numInQueue;
+
+#pragma mark - PFSubclassing
 
 +(void)load{
     [self registerSubclass];
-}
-
--(void)setQueue:(NSArray<Customer *> *)queue
-{
-    for(Customer *customer in queue)
-    {
-        [customer relationForKey:@"queueRelation"];
-        [customer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if(error)
-            {
-                NSLog(@"%@", error);
-            }
-        }];
-    }
-}
-
--(NSArray<Customer *> *)queue
-{
-    NSArray<Customer *> *queueArray = [[NSArray alloc] init];
-    
-    
-    
-    
-    
-    return queueArray;
-}
-
-
--(void) queueCustomer:(Customer *) customer{
-    
-    self.queue = [self.queue arrayByAddingObject:customer];
-    
 }
 
 +(NSString *)parseClassName
@@ -57,6 +29,95 @@
     return  @"Restaurant";
 }
 
-@dynamic queue;
+#pragma mark - Public Methods
+
+//Updates the passed in queue in the background
+-(void) updateQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
+
+    __block NSArray<Customer *> *blockRef = queue;
+    
+    [self callSortedQueue:queue withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
+        blockRef = queue;
+        completionBlock();
+    }];
+}
+
+//Removes Customer from queue, advances the queue and updates the passed in array
+-(void) removeCustomer:(Customer *) customer fromQueue:(NSArray<Customer *> *)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
+
+    __block NSArray<Customer *> *blockRef = queue;
+    __block int deletedCustomer = customer.queueNum;
+    
+    //Remove customer from queue and delete them in the background
+    customer.queueRestaurant = nil;
+    if(self.numInQueue > 0)
+    {
+        self.numInQueue -= 1;
+    }
+    [customer deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error while deleting: %@", error);
+        }
+        //Advace customers behind the removed customer and update the queue
+        [self callSortedQueue:queue withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
+            for(int i = deletedCustomer; i < queue.count; i += 1){
+                customer.queueNum -= 1;
+                [customer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if(error){
+                        NSLog(@"Error while saving: %@", error);
+                    }
+                }];
+            }
+            [self updateQueue:blockRef withCompletionBlock:completionBlock];
+        }];
+        
+    }];
+    
+    
+    
+}
+
+
+//Add a new customer to the restaurants queue
+-(void) addCustomer:(Customer *_Nonnull) customer toQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
+    customer.queueRestaurant = self;
+    customer.queueNum = self.numInQueue;
+    self.numInQueue += 1;
+    
+    [customer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error Saving: %@", error);
+        }
+    }];
+    
+    [self updateQueue:queue withCompletionBlock:completionBlock];
+    
+}
+
+#pragma mark - Private Methods
+
+
+
+-(void) callSortedQueue:(NSArray<Customer *> *)queue withCompletionBlock:(void (^_Nullable)(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error))completionBlock
+{
+    PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
+    [query whereKey:@"queueRestaurant" equalTo:self];
+    NSSortDescriptor *queueNumSort = [NSSortDescriptor sortDescriptorWithKey:@"queueNum" ascending:NO];
+    [query orderBySortDescriptor:queueNumSort];
+    
+
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error getting objects %@", error);
+        }
+        if(objects){
+            completionBlock(objects, error);
+        }else{completionBlock(nil, error);}
+    }];
+}
+
+
+
 
 @end
