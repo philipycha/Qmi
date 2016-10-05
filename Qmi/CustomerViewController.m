@@ -124,7 +124,7 @@
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self markerInfoTest];
+                [self passMarkerInfo];
             });
         }
     }];
@@ -139,7 +139,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)markerInfoTest{
+-(void)passMarkerInfo{
     
     for (GoogleMapsRestaurant *restaurant in self.restaurants) {
         

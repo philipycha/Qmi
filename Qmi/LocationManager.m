@@ -10,6 +10,8 @@
 
 @interface LocationManager () <CLLocationManagerDelegate>
 
+@property (nonatomic) BOOL isCameraUpdated;
+
 @end
 
 @implementation LocationManager
@@ -23,6 +25,13 @@
     return sharedLocationManager;
 }
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        _isCameraUpdated = NO;
+    }
+    return self;
+}
 
 - (void)startLocationMonitoring{
     
@@ -79,7 +88,11 @@
               location.coordinate.latitude,
               location.coordinate.longitude);
         self.currentLocation = location;
-        [self.delegate updateCamera];
+        if (self.isCameraUpdated == NO) {
+            
+            [self.delegate updateCamera];
+            self.isCameraUpdated = YES;
+        }
     }
     
 }
