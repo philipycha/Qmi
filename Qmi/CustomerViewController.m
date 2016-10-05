@@ -174,6 +174,7 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         
+        textField.placeholder = @"How Big is your party?";
         sizeOfPartyTextField = textField;
         
     }];
@@ -186,6 +187,7 @@
         //      replace init with initWith... once CoreLocation and User are linked
         
         newCustomer.partySize = sizeOfPartyTextField.text;
+        
         NSLog(@"%@", newCustomer.partySize);
         
         
