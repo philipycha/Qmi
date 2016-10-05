@@ -18,7 +18,6 @@
 
 @interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate>
 
-@property (strong, nonatomic) IBOutlet UIButton *joinQButton;
 @property (nonatomic, strong) Resturant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
 @property (nonatomic, strong) GMSMapView * mapView;
@@ -81,8 +80,8 @@
             NSLog(@"Current PlaceID %@", place.placeID);
         }
     }];
+    [self getRestaurantLocation];
 
-    [self markerInfoTest];
 }
 
 
@@ -95,12 +94,9 @@
 }
 
 
--(void)getRestaurantLocation:(NSString*)location
+-(void)getRestaurantLocation
 {
     NSString *urlString = @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+VancouverBC&sensor=true&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM";
-    urlString = [urlString stringByAppendingString:location];
-    urlString = [urlString stringByAppendingString:@"&results="];
-    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -115,20 +111,26 @@
             for (NSDictionary *restaurant in restaurantsFromJSONDict)
             {
                 NSString *name = [restaurant objectForKey:@"name"];
-                NSString *address = [restaurant objectForKey:@"address"];
-                NSNumber *lat = [restaurant objectForKey:@"lat"];
-                NSNumber *lng = [restaurant objectForKey:@"lng"];
-                
+                NSString *address = [restaurant objectForKey:@"formatted_address"];
+                NSDictionary *geometry = [restaurant objectForKey:@"geometry"];
+                NSDictionary *location = [geometry objectForKey:@"location"];
+                NSNumber *lat = [location objectForKey:@"lat"];
+                NSNumber *lng = [location objectForKey:@"lng"];
+                NSLog(@"CURRENT LATITUDE: %@", lat);
                 CLLocationCoordinate2D restaurantLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
                 GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address andCoordinate:restaurantLocation];
-                                                       
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                });
+                
+                [self.restaurants addObject:newRestaurant];
                 
             }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self markerInfoTest];
+            });
         }
     }];
+    
+    
     [dataTask resume];
 }
 
@@ -139,12 +141,16 @@
 }
 
 -(void)markerInfoTest{
-    CLLocationCoordinate2D position = CLLocationCoordinate2DMake(51.5, -0.127);
-    GMSMarker *london = [GMSMarker markerWithPosition:position];
-    london.title = @"London";
-    london.snippet = @"Population: 8,174,100";
-    london.map = self.mapView;
     
+    for (GoogleMapsRestaurant *restaurant in self.restaurants) {
+        
+        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(restaurant.coordinate.latitude, restaurant.coordinate.longitude);
+        GMSMarker *restaurantMarker = [GMSMarker markerWithPosition:position];
+        restaurantMarker.title = restaurant.name;
+        restaurantMarker.snippet = @"Population: 8,174,100";
+        restaurantMarker.map = self.mapView;
+        
+    }
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
