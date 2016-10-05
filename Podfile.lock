@@ -10,22 +10,31 @@ PODS:
     - GooglePlaces (= 2.1.0)
   - GooglePlaces (2.1.0):
     - GoogleMaps/Base (= 2.1.0)
+  - OMGHTTPURLRQ/UserAgent (3.2.0)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
+  - TDOAuth (1.1.3):
+    - OMGHTTPURLRQ/UserAgent
+  - YelpAPI (1.1.0):
+    - TDOAuth (~> 1.1)
 
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
   - Parse
+  - YelpAPI
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   GoogleMaps: 06589b9a38097bce0cd6e90f0fd9b5e4b4a9344c
   GooglePlacePicker: a2228b447d10008bcb765a6a081f415e8599e5d4
   GooglePlaces: 16e96266483b8010e9f275399403647978523c86
+  OMGHTTPURLRQ: 1e54807cb7d5dbb506926e53498e1e9ac5720c79
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
+  TDOAuth: 82474f45874759a094034b9454c75153062f6771
+  YelpAPI: 66b689666a3cd40d5acc3ae27f3787cd559e9f7d
 
-PODFILE CHECKSUM: 798a390dcefc73f4d38f481cc05ad969156f23d2
+PODFILE CHECKSUM: 59c818be146d1d038344f4e42bf83af00a99d8ec
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2
