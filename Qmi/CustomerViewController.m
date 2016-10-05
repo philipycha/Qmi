@@ -111,13 +111,14 @@
             {
                 NSString *name = [restaurant objectForKey:@"name"];
                 NSString *address = [restaurant objectForKey:@"formatted_address"];
+                NSString *rating = [restaurant objectForKey:@"rating"];
                 NSDictionary *geometry = [restaurant objectForKey:@"geometry"];
                 NSDictionary *location = [geometry objectForKey:@"location"];
                 NSNumber *lat = [location objectForKey:@"lat"];
                 NSNumber *lng = [location objectForKey:@"lng"];
                 NSLog(@"CURRENT LATITUDE: %@", lat);
                 CLLocationCoordinate2D restaurantLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
-                GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address andCoordinate:restaurantLocation];
+                GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address rating: rating andCoordinate:restaurantLocation];
                 
                 [self.restaurants addObject:newRestaurant];
                 
@@ -148,7 +149,7 @@
         restaurantMarker.title = restaurant.name;
         restaurantMarker.icon = [GMSMarker markerImageWithColor:[UIColor purpleColor]];
         restaurantMarker.opacity = 0.75;
-        restaurantMarker.snippet = @"Population: 8,174,100";
+        restaurantMarker.snippet = restaurant.rating;
         restaurantMarker.map = self.mapView;
         
     }
@@ -163,6 +164,10 @@
     infoWindow.RestaurantNameLabel.text = marker.title;
     infoWindow.QueueSizeLabel.text = @"2";
     infoWindow.delegate = self;
+    [infoWindow showRating:marker.snippet];
+    
+    
+    
     return infoWindow;
 }
 
