@@ -18,6 +18,7 @@
 		28251C4E1DA43571009156AB /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28251C4D1DA43571009156AB /* LogInViewController.m */; };
 		4108119F831A7977810A5BB5 /* Pods_Qmi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */; };
 		7D5C87181DA479B200C26093 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */; };
+		7D5C871B1DA489BC00C26093 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C871A1DA489BC00C26093 /* CustomerViewController.m */; };
 		7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */; };
 		7D84B3491DA2F1AB0013CCF3 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3481DA2F1AB0013CCF3 /* Customer.m */; };
 		7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B34B1DA2F26C0013CCF3 /* Resturant.m */; };
@@ -44,6 +45,8 @@
 		28251C4D1DA43571009156AB /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qmi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
+		7D5C87191DA489BC00C26093 /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
+		7D5C871A1DA489BC00C26093 /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
 		7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueViewCell.h; sourceTree = "<group>"; };
 		7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueViewCell.m; sourceTree = "<group>"; };
 		7D84B3471DA2F1AB0013CCF3 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 		28251C491DA43553009156AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D5C87191DA489BC00C26093 /* CustomerViewController.h */,
+				7D5C871A1DA489BC00C26093 /* CustomerViewController.m */,
 				7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */,
 				28251C4A1DA43565009156AB /* LogIn.storyboard */,
 				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
@@ -306,6 +311,7 @@
 				7D84B34C1DA2F26C0013CCF3 /* Resturant.m in Sources */,
 				7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */,
 				158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */,
+				7D5C871B1DA489BC00C26093 /* CustomerViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
 				28251C4E1DA43571009156AB /* LogInViewController.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
