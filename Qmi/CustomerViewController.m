@@ -95,7 +95,7 @@
 
 -(void)getRestaurantLocation
 {
-    NSString *urlString = @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+VancouverBC&sensor=true&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM";
+    NSString *urlString = @"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.280257,-123.109756&radius=5000&type=restaurant&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM";
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
