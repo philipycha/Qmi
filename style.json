@@ -24,8 +24,8 @@
               ]
   },
   {
-  "featureType": "administrative.land_parcel",
-  "elementType": "labels",
+  "featureType": "administrative",
+  "elementType": "geometry",
   "stylers": [
               {
               "visibility": "off"
@@ -55,18 +55,19 @@
   "stylers": [
               {
               "color": "#ffeb3b"
-              },
+              }
+              ]
+  },
+  {
+  "featureType": "landscape.natural",
+  "stylers": [
               {
-              "visibility": "on"
-              },
-              {
-              "weight": 1
+              "visibility": "off"
               }
               ]
   },
   {
   "featureType": "poi",
-  "elementType": "labels.text",
   "stylers": [
               {
               "visibility": "off"
@@ -79,30 +80,6 @@
   "stylers": [
               {
               "color": "#d59563"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.government",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.medical",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.park",
-  "stylers": [
-              {
-              "visibility": "off"
               }
               ]
   },
@@ -125,30 +102,6 @@
               ]
   },
   {
-  "featureType": "poi.place_of_worship",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.school",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.sports_complex",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
   "featureType": "road",
   "elementType": "geometry",
   "stylers": [
@@ -163,6 +116,15 @@
   "stylers": [
               {
               "color": "#212a37"
+              }
+              ]
+  },
+  {
+  "featureType": "road",
+  "elementType": "labels.icon",
+  "stylers": [
+              {
+              "visibility": "off"
               }
               ]
   },
@@ -199,15 +161,6 @@
   "stylers": [
               {
               "color": "#f3d19c"
-              }
-              ]
-  },
-  {
-  "featureType": "road.local",
-  "elementType": "labels",
-  "stylers": [
-              {
-              "visibility": "off"
               }
               ]
   },
