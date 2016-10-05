@@ -220,7 +220,7 @@
 				TargetAttributes = {
 					158568F71DA2E7BF00C03008 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = MV6A58NLUE;
+						DevelopmentTeam = B9P6859THW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -449,7 +449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Qmi/Qmi.entitlements;
-				DEVELOPMENT_TEAM = MV6A58NLUE;
+				DEVELOPMENT_TEAM = B9P6859THW;
 				INFOPLIST_FILE = Qmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.qmi;
@@ -463,7 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Qmi/Qmi.entitlements;
-				DEVELOPMENT_TEAM = MV6A58NLUE;
+				DEVELOPMENT_TEAM = B9P6859THW;
 				INFOPLIST_FILE = Qmi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.lighthouselabs.qmi;
