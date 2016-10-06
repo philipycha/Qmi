@@ -27,6 +27,9 @@
                                             <constraint firstAttribute="height" constant="46" id="GDh-W7-8so"/>
                                             <constraint firstAttribute="width" constant="46" id="qGm-M3-Pwh"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="leaveQueueButtonPressed:" destination="Z6L-TD-mwJ" eventType="touchUpInside" id="1gU-Yp-oz3"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsl-Qt-DR2">
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

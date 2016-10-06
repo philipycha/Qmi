@@ -160,16 +160,24 @@ id<RestaurantDelegate> _delegate;
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if(error){
             NSLog(@"Error getting objects %@", error);
+            return;
         }
         
         
         if(completionBlock){
-            if(objects){
-                self.numInQueue = (int) objects.count;
-                [self saveInBackground];
-                completionBlock(objects, error);
-            }else{completionBlock(nil, error);}
+            completionBlock(objects, error);
         }
+        
+        if(objects)
+        {
+            self.numInQueue = (int) objects.count;
+        
+        }else{
+            self.numInQueue = 0;
+        }
+        [self saveInBackground];
+        
+        
     }];
 }
 
