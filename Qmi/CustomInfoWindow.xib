@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomInfoWindowView">
-            <rect key="frame" x="0.0" y="0.0" width="210" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="247" height="210"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Qmi-Button" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-VD-AVY"/>
@@ -62,23 +62,24 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="jEH-Wy-uBt" firstAttribute="top" secondItem="LI2-VD-AVY" secondAttribute="bottom" constant="-114" id="A9W-ig-fcr"/>
-                <constraint firstAttribute="bottom" secondItem="ZdU-Y4-aNS" secondAttribute="bottom" constant="6" id="Acb-Ag-kZz"/>
+                <constraint firstAttribute="bottom" secondItem="1zw-67-Mt6" secondAttribute="bottom" constant="7" id="8zM-E7-7nt"/>
                 <constraint firstAttribute="bottom" secondItem="LI2-VD-AVY" secondAttribute="bottom" id="GZb-tw-cNP"/>
-                <constraint firstItem="U7E-CM-bBu" firstAttribute="leading" secondItem="ZdU-Y4-aNS" secondAttribute="trailing" constant="3" id="L40-8U-GPi"/>
-                <constraint firstItem="ZdU-Y4-aNS" firstAttribute="leading" secondItem="zZC-E7-Qvi" secondAttribute="trailing" constant="3" id="Qzo-BT-VJp"/>
-                <constraint firstAttribute="bottom" secondItem="1zw-67-Mt6" secondAttribute="bottom" constant="14" id="Tkw-4X-LcS"/>
-                <constraint firstItem="NAs-EK-r5b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="WOr-SB-C0X"/>
-                <constraint firstItem="NAs-EK-r5b" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dsQ-Tf-0Ol"/>
+                <constraint firstItem="LI2-VD-AVY" firstAttribute="leading" secondItem="NAs-EK-r5b" secondAttribute="trailing" constant="-161" id="Ghb-gE-wBb"/>
+                <constraint firstItem="ZdU-Y4-aNS" firstAttribute="leading" secondItem="zZC-E7-Qvi" secondAttribute="trailing" constant="5" id="LCb-Lc-GuI"/>
+                <constraint firstAttribute="bottom" secondItem="zZC-E7-Qvi" secondAttribute="bottom" constant="7" id="NI9-QN-29C"/>
+                <constraint firstItem="5m1-c1-rgs" firstAttribute="leading" secondItem="U7E-CM-bBu" secondAttribute="trailing" constant="5" id="OQp-bd-GDP"/>
+                <constraint firstItem="jEH-Wy-uBt" firstAttribute="top" secondItem="NAs-EK-r5b" secondAttribute="bottom" constant="35" id="SE7-2Z-Epr"/>
+                <constraint firstAttribute="bottom" secondItem="ZdU-Y4-aNS" secondAttribute="bottom" constant="7" id="TO6-Eq-MuO"/>
+                <constraint firstItem="NAs-EK-r5b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="WOr-SB-C0X"/>
                 <constraint firstAttribute="trailing" secondItem="LI2-VD-AVY" secondAttribute="trailing" id="ert-bR-IrD"/>
-                <constraint firstAttribute="bottom" secondItem="zZC-E7-Qvi" secondAttribute="bottom" constant="12" id="k8b-B3-kpg"/>
+                <constraint firstItem="1zw-67-Mt6" firstAttribute="leading" secondItem="5m1-c1-rgs" secondAttribute="trailing" constant="5" id="f4j-vH-esd"/>
+                <constraint firstItem="5m1-c1-rgs" firstAttribute="top" secondItem="LI2-VD-AVY" secondAttribute="bottom" constant="-32" id="ihm-1M-w6C"/>
                 <constraint firstItem="LI2-VD-AVY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kdA-4v-8ae"/>
-                <constraint firstAttribute="bottom" secondItem="5m1-c1-rgs" secondAttribute="bottom" constant="6" id="qDb-hj-QqR"/>
-                <constraint firstItem="1zw-67-Mt6" firstAttribute="leading" secondItem="5m1-c1-rgs" secondAttribute="trailing" constant="3" id="rEN-hI-t0i"/>
-                <constraint firstAttribute="bottom" secondItem="U7E-CM-bBu" secondAttribute="bottom" id="sTW-Ud-ZuK"/>
-                <constraint firstItem="U7E-CM-bBu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uOS-zJ-NRp"/>
-                <constraint firstItem="5m1-c1-rgs" firstAttribute="leading" secondItem="U7E-CM-bBu" secondAttribute="trailing" constant="3" id="uf5-hl-Hv3"/>
-                <constraint firstItem="jEH-Wy-uBt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vIk-NL-Dif"/>
+                <constraint firstItem="U7E-CM-bBu" firstAttribute="top" secondItem="LI2-VD-AVY" secondAttribute="bottom" constant="-32" id="mjZ-It-9OU"/>
+                <constraint firstItem="LI2-VD-AVY" firstAttribute="leading" secondItem="jEH-Wy-uBt" secondAttribute="trailing" constant="-126" id="pOj-Qm-xXV"/>
+                <constraint firstItem="U7E-CM-bBu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pY4-qU-Y3d"/>
+                <constraint firstItem="U7E-CM-bBu" firstAttribute="leading" secondItem="ZdU-Y4-aNS" secondAttribute="trailing" constant="5" id="r6W-Iz-hPc"/>
+                <constraint firstItem="1zw-67-Mt6" firstAttribute="leading" secondItem="5m1-c1-rgs" secondAttribute="trailing" constant="5" id="tYf-r9-t5j"/>
                 <constraint firstItem="LI2-VD-AVY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ySY-Jx-QoU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -91,10 +92,10 @@
                 <outlet property="starThree" destination="U7E-CM-bBu" id="a3t-3Y-SkI"/>
                 <outlet property="starTwo" destination="5m1-c1-rgs" id="J87-f3-zEs"/>
             </connections>
-            <point key="canvasLocation" x="-48" y="304"/>
+            <point key="canvasLocation" x="-29.5" y="304"/>
         </view>
     </objects>
     <resources>
-        <image name="Qmi-Button" width="366" height="372"/>
+        <image name="Qmi-Button" width="1321" height="1210"/>
     </resources>
 </document>
