@@ -10,7 +10,9 @@
 
 @interface LocationManager () <CLLocationManagerDelegate>
 
+
 @property (nonatomic) BOOL isCameraUpdated;
+
 @property (nonatomic) BOOL firedOnce;
 
 
@@ -104,8 +106,6 @@
             [self.delegate updateCamera];
             self.isCameraUpdated = YES;
         }
-
-        
         
         NSLog(@"location updated");
         
@@ -123,6 +123,7 @@
             
             NSLog(@"not nil");
         }
+
     }
     
 }
