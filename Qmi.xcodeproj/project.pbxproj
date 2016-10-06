@@ -28,6 +28,7 @@
 		7D84B3541DA30BCC0013CCF3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3531DA30BCC0013CCF3 /* User.m */; };
 		7D84B3561DA31FA20013CCF3 /* CustomerMainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */; };
 		7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E436D1DA351D300350E38 /* LocationManager.m */; };
+		D94747611DA5EFAA005BA38D /* RestaurantMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94747601DA5EFAA005BA38D /* RestaurantMarker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,8 @@
 		D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.release.xcconfig"; sourceTree = "<group>"; };
 		D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.debug.xcconfig"; sourceTree = "<group>"; };
 		D92453D31DA4732600AC4B5A /* Qmi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Qmi.entitlements; sourceTree = "<group>"; };
+		D947475F1DA5EFAA005BA38D /* RestaurantMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantMarker.h; sourceTree = "<group>"; };
+		D94747601DA5EFAA005BA38D /* RestaurantMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantMarker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 				7D84B3531DA30BCC0013CCF3 /* User.m */,
 				7D8E436C1DA351D300350E38 /* LocationManager.h */,
 				7D8E436D1DA351D300350E38 /* LocationManager.m */,
+				D947475F1DA5EFAA005BA38D /* RestaurantMarker.h */,
+				D94747601DA5EFAA005BA38D /* RestaurantMarker.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
 				28251C4E1DA43571009156AB /* LogInViewController.m in Sources */,
+				D94747611DA5EFAA005BA38D /* RestaurantMarker.m in Sources */,
 				158568FD1DA2E7C000C03008 /* main.m in Sources */,
 				15011CE21DA474B2003B2F7F /* GoogleMapsRestaurant.m in Sources */,
 				7D84B3461DA2EFE90013CCF3 /* QueueViewCell.m in Sources */,

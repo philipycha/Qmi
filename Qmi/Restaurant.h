@@ -19,13 +19,15 @@
 
 @interface Restaurant : PFObject
 
+@property (nonatomic) NSString *_Nullable name;
 @property (nonatomic, assign) int numInQueue;
 @property (nonatomic) User *_Nullable user;
 @property (nonatomic, weak) id <RestaurantDelegate> _Nullable delegate;
 
 
--(void) addCustomer:(Customer *_Nonnull) customer toQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
--(void) updateQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
--(void) removeCustomer:(Customer *_Nonnull) customer fromQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
+-(void) addCustomer:(Customer *_Nonnull) customer;
+-(void) updateQueue:(NSArray<Customer *> *_Nullable)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
+-(void) removeCustomer:(Customer *_Nonnull) customer fromQueue:(NSArray<Customer *> *_Nullable)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
++(NSString * _Nonnull)parseClassName;
 
 @end

@@ -42,8 +42,6 @@
 -(void)setCurrentUsersRestaurant{
     User *user = [User currentUser];
     
-    NSString *userID = user.objectId;
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
     [query whereKey:@"user" equalTo:user];
     NSArray *restaurants = [query findObjects];
@@ -64,31 +62,31 @@
 
 
 //TESTING
--(void)createTestData
-{
-    Customer *c1 = [Customer customerWithUser:nil partySize:@"4" andCurentLocation:nil];
-    Customer *c2 = [Customer customerWithUser:nil partySize:@"5" andCurentLocation:nil];
-    Customer *c3 = [Customer customerWithUser:nil partySize:@"8" andCurentLocation:nil];
-    Customer *c4 = [Customer customerWithUser:nil partySize:@"2" andCurentLocation:nil];
-    
-    Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
-    
-    newRestaurant.user = [User currentUser];
-    self.resturant = newRestaurant;
-    
-    [newRestaurant addCustomer:c1 toQueue:self.queue withCompletionBlock:nil];
-    [newRestaurant addCustomer:c2 toQueue:self.queue withCompletionBlock:nil];
-    [newRestaurant addCustomer:c3 toQueue:self.queue withCompletionBlock:nil];
-    [newRestaurant addCustomer:c4 toQueue:self.queue withCompletionBlock:nil];
-    
-    
-    [newRestaurant saveInBackground];
-    [c1 saveInBackground];
-    [c2 saveInBackground];
-    [c3 saveInBackground];
-    [c4 saveInBackground];
-    
-}
+//-(void)createTestData
+//{
+//    Customer *c1 = [Customer customerWithUser:nil partySize:@"4" andCurentLocation:nil];
+//    Customer *c2 = [Customer customerWithUser:nil partySize:@"5" andCurentLocation:nil];
+//    Customer *c3 = [Customer customerWithUser:nil partySize:@"8" andCurentLocation:nil];
+//    Customer *c4 = [Customer customerWithUser:nil partySize:@"2" andCurentLocation:nil];
+//    
+//    Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
+//    
+//    newRestaurant.user = [User currentUser];
+//    self.resturant = newRestaurant;
+//    
+//    [newRestaurant addCustomer:c1 toQueue:self.queue withCompletionBlock:nil];
+//    [newRestaurant addCustomer:c2 toQueue:self.queue withCompletionBlock:nil];
+//    [newRestaurant addCustomer:c3 toQueue:self.queue withCompletionBlock:nil];
+//    [newRestaurant addCustomer:c4 toQueue:self.queue withCompletionBlock:nil];
+//    
+//    
+//    [newRestaurant saveInBackground];
+//    [c1 saveInBackground];
+//    [c2 saveInBackground];
+//    [c3 saveInBackground];
+//    [c4 saveInBackground];
+//    
+//}
 
 
 - (void)didReceiveMemoryWarning {
