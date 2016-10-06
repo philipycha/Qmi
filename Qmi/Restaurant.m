@@ -16,7 +16,23 @@
 
 @implementation Restaurant
 
+id<RestaurantDelegate> _delegate;
+
 @dynamic numInQueue;
+@dynamic user;
+
+#pragma mark - Delegate getter/setter
+
+-(id<RestaurantDelegate>)delegate
+{
+    return _delegate;
+}
+
+-(void)setDelegate:(id<RestaurantDelegate>)delegate
+{
+    _delegate = delegate;
+}
+
 
 #pragma mark - PFSubclassing
 
@@ -34,12 +50,17 @@
 //Updates the passed in queue in the background
 -(void) updateQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
 
-    __block NSArray<Customer *> *blockRef = queue;
+//    __block NSArray<Customer *> *blockRef = queue;
     
     [self callSortedQueue:queue withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
-        blockRef = queue;
-        completionBlock();
+//        blockRef = queue;
+        
+        [self.delegate setControllerQueue:queue];
+        if (completionBlock){
+            completionBlock();
+        }
     }];
+
 }
 
 //Removes Customer from queue, advances the queue and updates the passed in array
@@ -101,6 +122,8 @@
 -(void) callSortedQueue:(NSArray<Customer *> *)queue withCompletionBlock:(void (^_Nullable)(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error))completionBlock
 {
     PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
+    
+    
     [query whereKey:@"queueRestaurant" equalTo:self];
     NSSortDescriptor *queueNumSort = [NSSortDescriptor sortDescriptorWithKey:@"queueNum" ascending:NO];
     [query orderBySortDescriptor:queueNumSort];
@@ -111,9 +134,11 @@
         if(error){
             NSLog(@"Error getting objects %@", error);
         }
-        if(objects){
-            completionBlock(objects, error);
-        }else{completionBlock(nil, error);}
+        if(completionBlock){
+            if(objects){
+                completionBlock(objects, error);
+            }else{completionBlock(nil, error);}
+        }
     }];
 }
 

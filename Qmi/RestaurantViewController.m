@@ -11,7 +11,7 @@
 #import "Customer.h"
 #import "QueueViewCell.h"
 
-@interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource, RestaurantDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) Restaurant * resturant;
@@ -24,9 +24,69 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.queue = [[NSArray alloc] init];
+    
+    [self setCurrentUsersRestaurant];
+    
+    
+//    [self createTestData];
+    
+    
     [self.resturant updateQueue:self.queue withCompletionBlock:^{
-        [self.tableView reloadData];
     }];
+    
+    
+}
+
+
+-(void)setCurrentUsersRestaurant{
+    User *user = [User currentUser];
+    
+    NSString *userID = user.objectId;
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Restaurant"];
+    [query whereKey:@"user" equalTo:user];
+    NSArray *restaurants = [query findObjects];
+    if([restaurants firstObject])
+    {
+        self.resturant = [restaurants firstObject];
+        self.resturant.delegate = self;
+    }
+    else{
+        Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
+        newRestaurant.user = [User currentUser];
+        self.resturant = newRestaurant;
+        NSLog(@"\n New Restaurant created\n");
+        [self.resturant saveInBackground];
+    }
+    
+}
+
+
+//TESTING
+-(void)createTestData
+{
+    Customer *c1 = [Customer customerWithUser:nil partySize:@"4" andCurentLocation:nil];
+    Customer *c2 = [Customer customerWithUser:nil partySize:@"5" andCurentLocation:nil];
+    Customer *c3 = [Customer customerWithUser:nil partySize:@"8" andCurentLocation:nil];
+    Customer *c4 = [Customer customerWithUser:nil partySize:@"2" andCurentLocation:nil];
+    
+    Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
+    
+    newRestaurant.user = [User currentUser];
+    self.resturant = newRestaurant;
+    
+    [newRestaurant addCustomer:c1 toQueue:self.queue withCompletionBlock:nil];
+    [newRestaurant addCustomer:c2 toQueue:self.queue withCompletionBlock:nil];
+    [newRestaurant addCustomer:c3 toQueue:self.queue withCompletionBlock:nil];
+    [newRestaurant addCustomer:c4 toQueue:self.queue withCompletionBlock:nil];
+    
+    
+    [newRestaurant saveInBackground];
+    [c1 saveInBackground];
+    [c2 saveInBackground];
+    [c3 saveInBackground];
+    [c4 saveInBackground];
     
 }
 
@@ -43,7 +103,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     QueueViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    cell.customerNameLabel.text = self.queue[indexPath.row].user.name;
+    
+    
+    cell.customerNameLabel.text = [self.queue[indexPath.row].user fetchIfNeeded].name;
     
     return cell;
 }
@@ -52,11 +114,19 @@
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
         [self.resturant removeCustomer:self.queue[indexPath.row] fromQueue:self.queue withCompletionBlock:nil];
-        [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView endUpdates];
+//        [self.tableView beginUpdates];
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [self.tableView endUpdates];
     }
 }
 
+
+#pragma mark - RestaurantDelegate
+
+-(void)setControllerQueue:(NSArray<Customer *> *)queue
+{
+    self.queue = queue;
+    [self.tableView reloadData];
+}
 
 @end

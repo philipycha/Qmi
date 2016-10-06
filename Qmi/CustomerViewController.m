@@ -16,7 +16,7 @@
 
 @interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate>
 
-@property (nonatomic, strong) Resturant * selectedRestaurant;
+@property (nonatomic, strong) Restaurant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
 @property (nonatomic, strong) GMSMapView * mapView;
 @property (nonatomic, strong) NSURLSession * markerSession;
@@ -189,7 +189,7 @@
         NSLog(@"%@", newCustomer.partySize);
         
         
-        [self.selectedRestaurant queueCustomer:newCustomer];
+//        [self.selectedRestaurant queueCustomer:newCustomer];
         
     }];
     

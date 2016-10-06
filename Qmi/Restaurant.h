@@ -11,10 +11,17 @@
 #import "Customer.h"
 #import "User.h"
 
+@protocol RestaurantDelegate <NSObject>
+
+-(void)setControllerQueue:(NSArray<Customer *> *_Nonnull)queue;
+
+@end
 
 @interface Restaurant : PFObject
 
 @property (nonatomic, assign) int numInQueue;
+@property (nonatomic) User *_Nullable user;
+@property (nonatomic, weak) id <RestaurantDelegate> _Nullable delegate;
 
 
 -(void) addCustomer:(Customer *_Nonnull) customer toQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
