@@ -63,6 +63,14 @@ id<RestaurantDelegate> _delegate;
  
     __block int deletedCustomer = customer.queueNum;
     
+    NSString *channel = [customer.user fetchIfNeeded].username;
+    
+    if(!channel){
+        channel = @"";
+    }
+    
+    [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"Removed from Queue", @"channel":channel}];
+    
     //Remove customer from queue and delete them in the background
     customer.queueRestaurant = nil;
     if(self.numInQueue > 0)
@@ -79,8 +87,19 @@ id<RestaurantDelegate> _delegate;
         //Advace customers behind the removed customer and update the queue
         [self callSortedQueueWithCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
             for(int i = deletedCustomer; i < queue.count; i += 1){
-                customer.queueNum -= 1;
-                [customer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                [queue[i] fetchIfNeeded].queueNum -= 1;
+                
+                
+                NSString *channel = [queue[i].user fetchIfNeeded].username;
+                
+                if(!channel){
+                    channel = @"";
+                }
+                
+                [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":[NSString stringWithFormat:@"Moved to position %d", [queue[i] fetchIfNeeded].queueNum], @"channel":channel}];
+
+                
+                [queue[i] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                     if(error){
                         NSLog(@"Error while saving: %@", error);
                     }
