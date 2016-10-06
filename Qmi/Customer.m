@@ -31,6 +31,7 @@
     
     newCustomer.partySize = partySize;
     newCustomer.user = user;
+    newCustomer.name = [user fetchIfNeeded].name;
     newCustomer.distance = distance;
     
     return newCustomer;
