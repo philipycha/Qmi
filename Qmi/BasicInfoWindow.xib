@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BasicInfoWindowView">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QmiBasicInfoWindow" translatesAutoresizingMaskIntoConstraints="NO" id="nHw-2a-kvc"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeD-1X-XAH">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="142" id="YlF-wG-vxS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nHw-2a-kvc" secondAttribute="trailing" id="ABu-SS-RHU"/>
+                <constraint firstAttribute="bottom" secondItem="nHw-2a-kvc" secondAttribute="bottom" id="Bze-gQ-O1O"/>
+                <constraint firstItem="nHw-2a-kvc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fqp-9n-Dcb"/>
+                <constraint firstItem="YeD-1X-XAH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="FtR-VP-nIT"/>
+                <constraint firstItem="YeD-1X-XAH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QRD-9H-L4z"/>
+                <constraint firstItem="nHw-2a-kvc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l6t-n3-ccS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="restaurantTitleLabel" destination="YeD-1X-XAH" id="hH7-sc-fhA"/>
+            </connections>
+            <point key="canvasLocation" x="-68" y="-227.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="QmiBasicInfoWindow" width="1016" height="847"/>
+    </resources>
+</document>
