@@ -15,8 +15,11 @@
 #import "LocationManager.h"
 #import "CustomInfoWindowView.h"
 #import "BasicInfoWindowView.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ViewUpdateDelegate.h"
+#import "AppDelegate.h"
 
-@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate>
+@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, ViewUpdateDelegate>
 
 @property (nonatomic, strong) Restaurant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
@@ -27,12 +30,20 @@
 @property (nonatomic, strong) NSString *currentPageToken;
 @property (nonatomic, strong) NSString *lastPageToken;
 @property (assign) int counter;
+@property (weak, nonatomic) IBOutlet UIView *queueView;
+@property (weak, nonatomic) IBOutlet UILabel *queueRestLabel;
+@property (weak, nonatomic) IBOutlet UILabel *quePositionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *removeQueueButton;
 @end
 
 @implementation CustomerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //set view update delegate to self
+    AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    appDelegate.delegate = self;
     
     self.locationManager = [LocationManager sharedLocationManager];
     [self.locationManager startLocationMonitoring];
@@ -45,7 +56,13 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
                                                             longitude:self.locationManager.currentLocation.coordinate.longitude
                                                                  zoom:15];
-    GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    GMSMapView *mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+   
+
+    
+    
+    self.queueRestLabel.text = @"Phil's Brothel";
+    self.quePositionLabel.text = @"3";
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
     
@@ -63,7 +80,13 @@
     
     mapView.mapStyle = style;
     self.mapView = mapView;
-    self.view = mapView;
+    //self.view = mapView;
+    
+    self.queueView.layer.cornerRadius = 5;
+    self.queueView.layer.masksToBounds = YES;
+    self.queueView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5f];
+    [self.view insertSubview: self.mapView atIndex: 0];
+    [self.view insertSubview: self.queueView aboveSubview:mapView];
     
     mapView.settings.compassButton = YES;
     mapView.settings.myLocationButton = YES;
@@ -95,6 +118,8 @@
     }
     return _restaurants;
 }
+
+
 -(void)updateCamera{
     GMSCameraPosition *updatedCamera = [GMSCameraPosition
                                         cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
@@ -252,7 +277,7 @@
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     RestaurantMarker *restaurantMarker = (RestaurantMarker *)marker;
     if(restaurantMarker.restaurant){
-        [self joinQButtonPressed];
+        [self joinQButtonPressed:restaurantMarker.restaurant];
     }
     
     //add else to do something for regular markers
@@ -266,7 +291,7 @@
     if(restaurantMarker.restaurant){
         CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
         infoWindow.RestaurantNameLabel.text = marker.title;
-        infoWindow.QueueSizeLabel.text = @"2";
+        infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", restaurantMarker.restaurant.numInQueue];
         infoWindow.delegate = self;
         [infoWindow showRating:marker.snippet];
         return infoWindow;
@@ -280,7 +305,7 @@
 
 }
 
--(void)joinQButtonPressed{
+-(void)joinQButtonPressed:(Restaurant *)restaurant{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Party Info" message:NULL preferredStyle:UIAlertControllerStyleAlert];
     
     
@@ -297,15 +322,18 @@
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         
-        Customer *newCustomer = [[Customer alloc]init];
-        //      replace init with initWith... once CoreLocation and User are linked
+        Customer *newCustomer = [Customer customerWithUser:[User currentUser] partySize:sizeOfPartyTextField.text andDistance:@"Calculate this"];
+        [restaurant addCustomer:newCustomer];
         
-        newCustomer.partySize = sizeOfPartyTextField.text;
+        [newCustomer saveInBackground];
+        [restaurant saveInBackground];
         
-        NSLog(@"%@", newCustomer.partySize);
+        NSString *channel = [restaurant.user fetchIfNeeded].username;
+        if(channel == nil){
+            channel = @"";
+        }
         
-        
-        //        [self.selectedRestaurant queueCustomer:newCustomer];
+        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"a new customer has been added to your Queue", @"channel":channel}];
         
     }];
     
@@ -317,8 +345,16 @@
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
     
+    
 }
 
+
+#pragma mark - ViewUpdateDelegate
+
+-(void)updateUsersView
+{
+    //Update the Customer view
+}
 
 
 /*

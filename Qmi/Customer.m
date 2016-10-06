@@ -22,16 +22,17 @@
 @dynamic name;
 @dynamic user;
 @dynamic partySize;
-@dynamic currentLocation;
+@dynamic distance;
 @dynamic queueRestaurant;
 @dynamic queueNum;
 
-+(Customer *)customerWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation{
++(Customer *)customerWithUser:(User *) user partySize:(NSString *) partySize andDistance:(NSString *) distance{
     Customer *newCustomer = [Customer objectWithClassName:[Customer parseClassName]];
     
     newCustomer.partySize = partySize;
     newCustomer.user = user;
-    newCustomer.currentLocation = currentLocation;
+    newCustomer.name = [user fetchIfNeeded].name;
+    newCustomer.distance = distance;
     
     return newCustomer;
 }

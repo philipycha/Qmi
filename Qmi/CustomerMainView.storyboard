@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z6L-TD-mwJ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z6L-TD-mwJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,12 +18,56 @@
                     <view key="view" contentMode="scaleToFill" id="2JP-fM-LGi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-HD-hKu">
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HzZ-kE-4if">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N9b-pz-3ou">
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Queue #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Id-Vd-2X7">
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJY-Gp-oFB">
+                                                <state key="normal" title="Remove">
+                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="HzZ-kE-4if" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" id="0J1-mG-bNV"/>
+                                    <constraint firstAttribute="height" constant="100" id="DTD-Iz-mIj"/>
+                                    <constraint firstAttribute="width" constant="100" id="NFg-0c-YaW"/>
+                                    <constraint firstAttribute="bottom" secondItem="HzZ-kE-4if" secondAttribute="bottom" id="Pg6-G5-bAR"/>
+                                    <constraint firstAttribute="trailing" secondItem="HzZ-kE-4if" secondAttribute="trailing" id="hXL-GR-Wlh"/>
+                                    <constraint firstItem="HzZ-kE-4if" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="top" id="hgp-IP-6hF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2HN-W5-jRi" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="bottom" constant="20" id="Q3Z-oC-KMq"/>
+                            <constraint firstItem="Vo2-HD-hKu" firstAttribute="leading" secondItem="2JP-fM-LGi" secondAttribute="leadingMargin" constant="20" id="gai-hg-YmG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="quePositionLabel" destination="0Id-Vd-2X7" id="Xqo-oc-Wf1"/>
+                        <outlet property="queueRestLabel" destination="N9b-pz-3ou" id="WHn-Bk-3ra"/>
+                        <outlet property="queueView" destination="Vo2-HD-hKu" id="m6s-HX-8bo"/>
+                        <outlet property="removeQueueButton" destination="zJY-Gp-oFB" id="xJw-rc-zsR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oi6-X4-tsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-230" y="121"/>
+            <point key="canvasLocation" x="-231.19999999999999" y="120.98950524737631"/>
         </scene>
     </scenes>
 </document>
