@@ -116,6 +116,8 @@
             newUser.isCustomer = YES;
             
             
+            
+            
             if([newUser signUp]){
                 [self performSegueWithIdentifier:@"ShowCustomerMainView" sender:self];
             }else{
@@ -142,14 +144,31 @@
     [signUpFailedAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
-    
-    
-    
-    
-    
 }
 
 
+
+//sets the channel of the phone (currentInstallation) to be the username of the logged in user
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    User *currentUser = [User currentUser];
+    [self setInstallationChannelToEmail:currentUser];
+}
+
+
+//Sets the phones (installations) channel to the users username
+-(void)setInstallationChannelToEmail:(User *)currentUser{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    NSString *userName = [currentUser fetchIfNeeded].username;
+    [currentInstallation setChannels:@[userName]];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error saving installation: %@", error);
+        }
+        else {
+            NSLog(@"Successfully saved user installation");
+        }
+    }];
+}
 
 
 @end

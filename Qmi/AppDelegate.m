@@ -52,6 +52,8 @@
     {
         User *currentUser = [User currentUser];
         
+        [self setInstallationChannelToEmail:currentUser];
+        
         if(currentUser.isCustomer){
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CustomerMainView" bundle:[NSBundle mainBundle]];
             
@@ -132,6 +134,22 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+//Sets the phones (installations) channel to the users username
+-(void)setInstallationChannelToEmail:(User *)currentUser{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    NSString *userName = [currentUser fetchIfNeeded].username;
+    [currentInstallation setChannels:@[userName]];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error saving installation: %@", error);
+        }
+        else {
+            NSLog(@"Successfully saved user installation");
+        }
+    }];
+}
+
 
 
 @end
