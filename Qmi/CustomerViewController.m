@@ -30,10 +30,15 @@
 @property (nonatomic, strong) NSString *currentPageToken;
 @property (nonatomic, strong) NSString *lastPageToken;
 @property (assign) int counter;
+@property (strong, nonatomic) Customer * currentCustomer;
+@property (nonatomic) Restaurant *currentRestaurant;
+
+//Storyboard Connections
 @property (weak, nonatomic) IBOutlet UIView *queueView;
 @property (weak, nonatomic) IBOutlet UILabel *queueRestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *quePositionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *removeQueueButton;
+
 @end
 
 @implementation CustomerViewController
@@ -58,11 +63,6 @@
                                                                  zoom:15];
     GMSMapView *mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
    
-
-    
-    
-    self.queueRestLabel.text = @"Phil's Brothel";
-    self.quePositionLabel.text = @"3";
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
     
@@ -84,7 +84,8 @@
     
     self.queueView.layer.cornerRadius = 5;
     self.queueView.layer.masksToBounds = YES;
-    self.queueView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5f];
+    self.queueView.hidden = YES;
+    
     [self.view insertSubview: self.mapView atIndex: 0];
     [self.view insertSubview: self.queueView aboveSubview:mapView];
     
@@ -112,6 +113,9 @@
     
 }
 
+
+
+
 -(NSMutableArray *)restaurants{
     if(!_restaurants){
         self.restaurants = [[NSMutableArray alloc] init];
@@ -119,6 +123,7 @@
     return _restaurants;
 }
 
+#pragma mark - Google Maps and Core Location
 
 -(void)updateCamera{
     GMSCameraPosition *updatedCamera = [GMSCameraPosition
@@ -220,11 +225,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)passMarkerInfo{
     
     for (GoogleMapsRestaurant *restaurant in self.restaurants) {
@@ -273,7 +273,7 @@
     return image;
 }
 
-
+//Marker Info Window pressed
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     RestaurantMarker *restaurantMarker = (RestaurantMarker *)marker;
     if(restaurantMarker.restaurant){
@@ -284,6 +284,7 @@
     
 }
 
+//Set marker info window
 -(UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
     
     RestaurantMarker *restaurantMarker = (RestaurantMarker*) marker;
@@ -294,6 +295,7 @@
         infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", restaurantMarker.restaurant.numInQueue];
         infoWindow.delegate = self;
         [infoWindow showRating:marker.snippet];
+        self.infoWindow = infoWindow;
         return infoWindow;
     }
     else{
@@ -305,7 +307,12 @@
 
 }
 
+#pragma mark - Join Queue
+
 -(void)joinQButtonPressed:(Restaurant *)restaurant{
+    
+    if(!self.currentCustomer){
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Party Info" message:NULL preferredStyle:UIAlertControllerStyleAlert];
     
     
@@ -321,31 +328,79 @@
     
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
+        [restaurant fetchIfNeeded];
         
+        //Create a new customer, add them to the restaurants queue then save both
         Customer *newCustomer = [Customer customerWithUser:[User currentUser] partySize:sizeOfPartyTextField.text andDistance:@"Calculate this"];
         [restaurant addCustomer:newCustomer];
-        
         [newCustomer saveInBackground];
         [restaurant saveInBackground];
+        self.currentCustomer = newCustomer;
+        self.currentRestaurant = restaurant;
         
+        
+        //Show the position in Queue indicator, unselect the map marker to hide the info window
+        self.queueView.hidden = NO;
+        [self updateQueueInfoWindow];
+        self.mapView.selectedMarker = nil;
+        
+        //Send a push notification to the restaurant to inform them and update their view
         NSString *channel = [restaurant.user fetchIfNeeded].username;
         if(channel == nil){
             channel = @"";
         }
-        
         [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"a new customer has been added to your Queue", @"channel":channel}];
+        
+        
         
     }];
     
     UIAlertAction * closeAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self dismissViewControllerAnimated:YES completion:nil];
+
     }];
     
     [alertController addAction:closeAction];
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
     
+    }
+}
+
+#pragma mark - Storyboard Actions
+
+- (IBAction)leaveQueueButtonPressed:(UIButton *)sender {
     
+    //remove customer from restaurant
+    [self.currentRestaurant removeCustomer:self.currentCustomer];
+    
+    //Send push notification to restaurant to update them
+    NSString *channel = [self.currentRestaurant.user fetchIfNeeded].username;
+    if(channel == nil){
+        channel = @"";
+    }
+    [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"A customer has left your Queue", @"channel":channel}];
+    
+    self.currentCustomer = nil;
+    
+    [self updateQueueInfoWindow];
+}
+
+
+#pragma mark - View Updating
+
+-(void)updateQueueInfoWindow{
+    [self.currentCustomer fetchIfNeeded];
+    
+    if (self.currentCustomer) {
+        self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
+        self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum + 1];
+    }
+    
+    else{
+        self.queueView.hidden = YES;
+        self.currentRestaurant = nil;
+    }
 }
 
 
@@ -353,6 +408,8 @@
 
 -(void)updateUsersView
 {
+    [self updateQueueInfoWindow];
+    
     //Update the Customer view
 }
 

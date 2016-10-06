@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+
 @end
 
 @implementation LogInViewController
@@ -72,11 +73,27 @@
     __block UITextField *emailAlertTextField;
     __block UITextField *passwordAlertTextField;
     __block UITextField *confirmPasswordAlertTextField;
+    __block UITextField *fullNameAlertTextField;
+    __block UITextField *phoneNumberAlertTextField;
 
     
     UIAlertController *signUpAlert = [UIAlertController alertControllerWithTitle:@"New Account" message:@"please enter your details" preferredStyle:UIAlertControllerStyleAlert];
     
     [signUpAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"full name";
+        fullNameAlertTextField = textField;
+        
+    }];
+    
+    [signUpAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.keyboardType = UIKeyboardTypePhonePad;
+        textField.placeholder = @"phone number";
+        phoneNumberAlertTextField = textField;
+        
+    }];
+    
+    [signUpAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
         textField.placeholder = @"email";
         emailAlertTextField = textField;
         if(self.emailTextField.text != nil)
@@ -113,6 +130,9 @@
             newUser.username = emailAlertTextField.text;
             newUser.password = passwordAlertTextField.text;
             newUser.email = emailAlertTextField.text;
+            newUser.name = fullNameAlertTextField.text;
+            newUser.phoneNumber = phoneNumberAlertTextField.text;
+            
             newUser.isCustomer = YES;
             
             
