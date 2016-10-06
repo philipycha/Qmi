@@ -13,6 +13,7 @@
 @protocol locationManagerDelegate <NSObject>
 
 -(void)updateCamera;
+-(void)getRestaurantLocation;
 
 @end
 

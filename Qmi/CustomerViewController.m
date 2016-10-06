@@ -22,7 +22,9 @@
 @property (nonatomic, strong) NSURLSession * markerSession;
 @property (nonatomic, strong) NSMutableArray *restaurants;
 @property (nonatomic) CustomInfoWindowView * infoWindow;
-
+@property (nonatomic, strong) NSString *currentPageToken;
+@property (nonatomic, strong) NSString *lastPageToken;
+@property (assign) int counter;
 @end
 
 @implementation CustomerViewController
@@ -33,6 +35,10 @@
     self.locationManager = [LocationManager sharedLocationManager];
     [self.locationManager startLocationMonitoring];
     self.locationManager.delegate = self;
+    
+    self.currentPageToken  = @"111";
+    self.lastPageToken = @"000";
+    self.counter = 0;
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
                                                             longitude:self.locationManager.currentLocation.coordinate.longitude
@@ -78,11 +84,15 @@
             NSLog(@"Current PlaceID %@", place.placeID);
         }
     }];
-    [self getRestaurantLocation];
 
 }
 
-
+-(NSMutableArray *)restaurants{
+    if(!_restaurants){
+        self.restaurants = [[NSMutableArray alloc] init];
+    }
+    return _restaurants;
+}
 -(void)updateCamera{
     GMSCameraPosition *updatedCamera = [GMSCameraPosition
                                         cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
@@ -92,20 +102,22 @@
     
 }
 
-
--(void)getRestaurantLocation
-{
-    NSString *urlString = @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+VancouverBC&sensor=true&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM";
+-(void)fetchRestaurantsWithURL:(NSString *)urlString{
+    
+    self.counter = self.counter + 1;
+    
+    NSLog(@"succesfully completed %i counter", self.counter);
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if(!error)
         {
+            
             NSError *jsonError = nil;
             NSDictionary *dictFromJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            
             NSArray *restaurantsFromJSONDict = [dictFromJSON objectForKey:@"results"];
-            self.restaurants = [[NSMutableArray alloc] init];
             
             for (NSDictionary *restaurant in restaurantsFromJSONDict)
             {
@@ -116,22 +128,53 @@
                 NSDictionary *location = [geometry objectForKey:@"location"];
                 NSNumber *lat = [location objectForKey:@"lat"];
                 NSNumber *lng = [location objectForKey:@"lng"];
-                NSLog(@"CURRENT LATITUDE: %@", lat);
+                //NSLog(@"CURRENT LATITUDE: %@", lat);
                 CLLocationCoordinate2D restaurantLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
                 GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address rating: rating andCoordinate:restaurantLocation];
                 
                 [self.restaurants addObject:newRestaurant];
+            
                 
             }
             
+            self.currentPageToken = [dictFromJSON objectForKey:@"next_page_token"];
+            
+            //NSLog(@"LAST PAGE TOKEN : %@",self.lastPageToken);
+            NSLog(@"Current PAGE TOKEN: %@",self.currentPageToken);
+            
+            if(self.currentPageToken != nil && ![self.lastPageToken isEqualToString:self.currentPageToken]){
+                
+                self.lastPageToken = self.currentPageToken;
+                
+                [self fetchRestaurantsWithURL:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=%@&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.currentPageToken]];
+                
+                NSLog(@"token different, resquest FIRED");
+                
+            } else {
+                
+                NSLog(@"token still the same, request didnt go through");
+            }
+
+            NSLog(@"RESTAURANT COUNT HERE %i", self.restaurants.count);
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self passMarkerInfo];
+
             });
         }
     }];
     
     
     [dataTask resume];
+}
+
+-(void)getRestaurantLocation
+{
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&type=restaurant&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
+    
+    [self fetchRestaurantsWithURL:urlString];
+    
 }
 
 
