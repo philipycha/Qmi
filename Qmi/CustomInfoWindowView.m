@@ -8,10 +8,10 @@
 
 #import "CustomInfoWindowView.h"
 #import "Customer.h"
-#import "Resturant.h"
+#import "Restaurant.h"
 
 @interface CustomInfoWindowView ()
-@property (nonatomic, strong) Resturant * selectedRestaurant;
+@property (nonatomic, strong) Restaurant * selectedRestaurant;
 
 @end
 
