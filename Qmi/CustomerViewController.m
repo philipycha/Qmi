@@ -14,6 +14,7 @@
 #import "RestaurantMarker.h"
 #import "LocationManager.h"
 #import "CustomInfoWindowView.h"
+#import "BasicInfoWindowView.h"
 
 @interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate>
 
@@ -211,14 +212,11 @@
         if(restaurant.restaurant){
             restaurantMarker.icon = [UIImage imageNamed:@"Qmi-Pin"];
             restaurantMarker.icon = [self image:restaurantMarker.icon scaledToSize:CGSizeMake(40.0f, 50.0f)];
-            restaurantMarker.iconView.backgroundColor = [UIColor redColor];
             restaurantMarker.restaurant = restaurant.restaurant;
         }
         else{
             restaurantMarker.iconView.backgroundColor = [UIColor purpleColor];
         }
-        restaurantMarker.opacity = 1.0;
-        restaurantMarker.appearAnimation = kGMSMarkerAnimationPop;
         restaurantMarker.snippet = restaurant.rating;
        
         restaurantMarker.map = self.mapView;
@@ -275,12 +273,9 @@
     }
     else{
         
-        UIView *view = [[UIView alloc] init];
-        view.frame = CGRectMake(20, 20, 20, 20);
-        view.backgroundColor = [UIColor redColor];
-        return view;
-        
-        
+        BasicInfoWindowView *basicInfoWindow = [[[NSBundle mainBundle] loadNibNamed:@"BasicInfoWindow" owner:self options:nil] objectAtIndex:0];
+        basicInfoWindow.restaurantTitleLabel.text = marker.title;
+        return basicInfoWindow;
     }
 
 }
