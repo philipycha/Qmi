@@ -123,13 +123,14 @@
             {
                 NSString *name = [restaurant objectForKey:@"name"];
                 NSString *address = [restaurant objectForKey:@"formatted_address"];
+                NSString *rating = [restaurant objectForKey:@"rating"];
                 NSDictionary *geometry = [restaurant objectForKey:@"geometry"];
                 NSDictionary *location = [geometry objectForKey:@"location"];
                 NSNumber *lat = [location objectForKey:@"lat"];
                 NSNumber *lng = [location objectForKey:@"lng"];
                 //NSLog(@"CURRENT LATITUDE: %@", lat);
                 CLLocationCoordinate2D restaurantLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
-                GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address andCoordinate:restaurantLocation];
+                GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address rating: rating andCoordinate:restaurantLocation];
                 
                 [self.restaurants addObject:newRestaurant];
             
@@ -156,9 +157,9 @@
 
             NSLog(@"RESTAURANT COUNT HERE %i", self.restaurants.count);
             
-            dispatch_async(dispatch_get_main_queue(), ^{   
-                [self markerInfoTest];
-               
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self passMarkerInfo];
+
             });
         }
     }];
@@ -182,20 +183,45 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)markerInfoTest{
+-(void)passMarkerInfo{
     
     for (GoogleMapsRestaurant *restaurant in self.restaurants) {
         
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(restaurant.coordinate.latitude, restaurant.coordinate.longitude);
         GMSMarker *restaurantMarker = [GMSMarker markerWithPosition:position];
         restaurantMarker.title = restaurant.name;
-        restaurantMarker.icon = [GMSMarker markerImageWithColor:[UIColor purpleColor]];
-        restaurantMarker.opacity = 0.75;
-        restaurantMarker.snippet = @"Population: 8,174,100";
+        restaurantMarker.icon = [UIImage imageNamed:@"Qmi-Pin"];
+        restaurantMarker.icon = [self image:restaurantMarker.icon scaledToSize:CGSizeMake(40.0f, 50.0f)];
+        restaurantMarker.opacity = 1.0;
+        restaurantMarker.appearAnimation = kGMSMarkerAnimationPop;
+        restaurantMarker.snippet = restaurant.rating;
         restaurantMarker.map = self.mapView;
         
     }
 }
+
+- (UIImage *)image:(UIImage*)originalImage scaledToSize:(CGSize)size
+{
+    //avoid redundant drawing
+    if (CGSizeEqualToSize(originalImage.size, size))
+    {
+        return originalImage;
+    }
+    
+    //create drawing context
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
+    
+    //draw
+    [originalImage drawInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+    
+    //capture resultant image
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //return image
+    return image;
+}
+
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     [self joinQButtonPressed];
@@ -206,6 +232,10 @@
     infoWindow.RestaurantNameLabel.text = marker.title;
     infoWindow.QueueSizeLabel.text = @"2";
     infoWindow.delegate = self;
+    [infoWindow showRating:marker.snippet];
+    
+    
+    
     return infoWindow;
 }
 
@@ -217,6 +247,7 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         
+        textField.placeholder = @"How Big is your party?";
         sizeOfPartyTextField = textField;
         
     }];
@@ -229,6 +260,7 @@
         //      replace init with initWith... once CoreLocation and User are linked
         
         newCustomer.partySize = sizeOfPartyTextField.text;
+        
         NSLog(@"%@", newCustomer.partySize);
         
         
@@ -236,6 +268,11 @@
         
     }];
     
+    UIAlertAction * closeAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alertController addAction:closeAction];
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
     

@@ -14,7 +14,8 @@
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * address;
+@property (nonatomic) NSString * rating;
 
-- (instancetype)initWithName:(NSString *)name address:(NSString *)address andCoordinate:(CLLocationCoordinate2D)coordinate;
+- (instancetype)initWithName:(NSString *)name address:(NSString *)address rating:(NSString *)rating andCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end
