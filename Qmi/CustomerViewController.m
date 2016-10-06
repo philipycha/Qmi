@@ -188,7 +188,7 @@
 -(void)getRestaurantLocation
 {
     
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=2000&type=restaurant&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=1000&type=restaurant&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
     
     [self fetchRestaurantsWithURL:urlString];
     
@@ -204,8 +204,6 @@
     
     for (GoogleMapsRestaurant *restaurant in self.restaurants) {
         
-        
-        
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(restaurant.coordinate.latitude, restaurant.coordinate.longitude);
         RestaurantMarker *restaurantMarker = [RestaurantMarker markerWithPosition:position];
         restaurantMarker.title = restaurant.name;
@@ -218,6 +216,7 @@
             restaurantMarker.iconView.backgroundColor = [UIColor purpleColor];
         }
         restaurantMarker.snippet = restaurant.rating;
+        
        
         restaurantMarker.map = self.mapView;
         

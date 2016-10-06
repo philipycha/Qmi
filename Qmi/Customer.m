@@ -18,7 +18,6 @@
     [self registerSubclass];
 }
 
-
 @dynamic name;
 @dynamic user;
 @dynamic partySize;
