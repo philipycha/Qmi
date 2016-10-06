@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Customer.h"
-#import "Resturant.h"
+#import "Restaurant.h"
+
 
 @interface CustomerViewController : UIViewController
 
