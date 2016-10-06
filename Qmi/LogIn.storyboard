@@ -19,9 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Qmi-loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Fam-7I-6ZX">
-                                <frame key="frameInset" width="375" height="667"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Qmi-loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Fam-7I-6ZX"/>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKE-vy-6Z0">
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -69,6 +67,7 @@
                             <constraint firstItem="9w1-u8-vhL" firstAttribute="centerX" secondItem="3ra-fJ-u5N" secondAttribute="centerX" multiplier="1.3" id="bb3-gU-RGA"/>
                             <constraint firstAttribute="trailing" secondItem="Fam-7I-6ZX" secondAttribute="trailing" id="fPI-O5-Bk4"/>
                             <constraint firstItem="3Hc-4U-JJF" firstAttribute="top" secondItem="NRL-ju-h7o" secondAttribute="bottom" constant="10" id="iMh-E4-l6i"/>
+                            <constraint firstItem="Fam-7I-6ZX" firstAttribute="top" secondItem="3ra-fJ-u5N" secondAttribute="top" id="jDI-kH-mS1"/>
                             <constraint firstItem="BeK-Bl-6Er" firstAttribute="centerX" secondItem="3ra-fJ-u5N" secondAttribute="centerX" multiplier="0.7" id="jSK-vi-A21"/>
                             <constraint firstItem="VTk-6g-gep" firstAttribute="top" secondItem="Fam-7I-6ZX" secondAttribute="bottom" id="lvr-vN-82H"/>
                             <constraint firstItem="V15-1N-0cu" firstAttribute="top" secondItem="gKE-vy-6Z0" secondAttribute="bottom" constant="28.5" id="vKA-t9-Y2Y"/>
@@ -104,6 +103,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Qmi-loginBackground" width="5353" height="8720"/>
+        <image name="Qmi-loginBackground" width="1286" height="2094"/>
     </resources>
 </document>
