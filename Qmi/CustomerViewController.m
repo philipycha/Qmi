@@ -15,6 +15,7 @@
 #import "LocationManager.h"
 #import "CustomInfoWindowView.h"
 #import "BasicInfoWindowView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate>
 
@@ -27,6 +28,10 @@
 @property (nonatomic, strong) NSString *currentPageToken;
 @property (nonatomic, strong) NSString *lastPageToken;
 @property (assign) int counter;
+@property (weak, nonatomic) IBOutlet UIView *queueView;
+@property (weak, nonatomic) IBOutlet UILabel *queueRestLabel;
+@property (weak, nonatomic) IBOutlet UILabel *quePositionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *removeQueueButton;
 @end
 
 @implementation CustomerViewController
@@ -45,7 +50,13 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
                                                             longitude:self.locationManager.currentLocation.coordinate.longitude
                                                                  zoom:15];
-    GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    GMSMapView *mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+   
+
+    
+    
+    self.queueRestLabel.text = @"Phil's Brothel";
+    self.quePositionLabel.text = @"3";
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
     
@@ -63,7 +74,13 @@
     
     mapView.mapStyle = style;
     self.mapView = mapView;
-    self.view = mapView;
+    //self.view = mapView;
+    
+    self.queueView.layer.cornerRadius = 5;
+    self.queueView.layer.masksToBounds = YES;
+    self.queueView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5f];
+    [self.view insertSubview: self.mapView atIndex: 0];
+    [self.view insertSubview: self.queueView aboveSubview:mapView];
     
     mapView.settings.compassButton = YES;
     mapView.settings.myLocationButton = YES;
