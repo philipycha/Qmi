@@ -10,6 +10,12 @@
 
 @interface LocationManager () <CLLocationManagerDelegate>
 
+<<<<<<< HEAD
+@property (nonatomic) BOOL isCameraUpdated;
+=======
+@property (nonatomic) BOOL firedOnce;
+>>>>>>> master
+
 @end
 
 @implementation LocationManager
@@ -23,6 +29,13 @@
     return sharedLocationManager;
 }
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        _isCameraUpdated = NO;
+    }
+    return self;
+}
 
 - (void)startLocationMonitoring{
     
@@ -55,6 +68,8 @@
 -(void)setupLocationManager{
     if (_locationManager == nil) {
         
+        _firedOnce = NO;
+        
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
         _locationManager.distanceFilter = 50;
@@ -62,24 +77,58 @@
         [_locationManager requestWhenInUseAuthorization];
     }
     
-    [_locationManager startUpdatingLocation];
+    //[_locationManager startUpdatingLocation];
     
 }
 
-
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if(status == kCLAuthorizationStatusAuthorizedWhenInUse){
+        
+        [self.locationManager startUpdatingLocation]; //change to start updating instead of request
+    
+    }
+}
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
     // If it's a relatively recent event, turn off updates to save power.
     CLLocation* location = [locations lastObject];
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (howRecent < 25.0) {
+    if (howRecent < 10.0) {
         // If the event is recent, do something with it.
         NSLog(@"latitude %+.6f, longitude %+.6f\n",
               location.coordinate.latitude,
               location.coordinate.longitude);
+       
         self.currentLocation = location;
-        [self.delegate updateCamera];
+<<<<<<< HEAD
+        if (self.isCameraUpdated == NO) {
+            
+            [self.delegate updateCamera];
+            self.isCameraUpdated = YES;
+        }
+=======
+        
+        
+        NSLog(@"location updated");
+        
+        if (self.currentLocation != nil){
+       
+            [self.delegate updateCamera];
+       
+  
+            if(!self.firedOnce){
+            [self.delegate getRestaurantLocation];
+                self.firedOnce = YES;
+                NSLog(@"fired once");
+               [self.locationManager stopUpdatingLocation];
+            }
+            
+            NSLog(@"not nil");
+        }
+        
+        
+>>>>>>> master
     }
     
 }

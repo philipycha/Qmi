@@ -15,9 +15,16 @@
 @end
 
 @interface CustomInfoWindowView : UIView
+
 @property (strong, nonatomic) IBOutlet UILabel *RestaurantNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *QueueSizeLabel;
-@property (strong, nonatomic) IBOutlet UIButton *JoinQButton;
 @property (nonatomic, strong) id <InfoWindowDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIImageView *starOne;
+@property (strong, nonatomic) IBOutlet UIImageView *starTwo;
+@property (strong, nonatomic) IBOutlet UIImageView *starThree;
+@property (strong, nonatomic) IBOutlet UIImageView *starFour;
+@property (strong, nonatomic) IBOutlet UIImageView *starFive;
+
+-(void) showRating: (NSString *) rating;
 
 @end
