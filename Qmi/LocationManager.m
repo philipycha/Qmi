@@ -10,11 +10,11 @@
 
 @interface LocationManager () <CLLocationManagerDelegate>
 
-<<<<<<< HEAD
+
 @property (nonatomic) BOOL isCameraUpdated;
-=======
+
 @property (nonatomic) BOOL firedOnce;
->>>>>>> master
+
 
 @end
 
@@ -101,14 +101,11 @@
               location.coordinate.longitude);
        
         self.currentLocation = location;
-<<<<<<< HEAD
         if (self.isCameraUpdated == NO) {
             
             [self.delegate updateCamera];
             self.isCameraUpdated = YES;
         }
-=======
-        
         
         NSLog(@"location updated");
         
@@ -128,7 +125,6 @@
         }
         
         
->>>>>>> master
     }
     
 }

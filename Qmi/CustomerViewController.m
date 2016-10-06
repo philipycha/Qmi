@@ -97,7 +97,8 @@
     GMSCameraPosition *updatedCamera = [GMSCameraPosition
                                         cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
                                         longitude:self.locationManager.currentLocation.coordinate.longitude
-                                        zoom:15];
+                                        zoom:15 bearing:0
+                                        viewingAngle:45.0];
     self.mapView.camera = updatedCamera;
     
 }
@@ -233,8 +234,6 @@
     infoWindow.QueueSizeLabel.text = @"2";
     infoWindow.delegate = self;
     [infoWindow showRating:marker.snippet];
-    
-    
     
     return infoWindow;
 }
