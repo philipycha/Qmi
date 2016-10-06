@@ -26,8 +26,8 @@
 
 
 -(void) addCustomer:(Customer *_Nonnull) customer;
--(void) updateQueue:(NSArray<Customer *> *_Nullable)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
--(void) removeCustomer:(Customer *_Nonnull) customer fromQueue:(NSArray<Customer *> *_Nullable)queue withCompletionBlock:(void (^_Nullable)())completionBlock;
+-(void) updateQueue;
+-(void) removeCustomer:(Customer *_Nonnull) customer;
 +(NSString * _Nonnull)parseClassName;
 
 @end

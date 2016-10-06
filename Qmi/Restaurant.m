@@ -49,25 +49,18 @@ id<RestaurantDelegate> _delegate;
 #pragma mark - Public Methods
 
 //Updates the passed in queue in the background
--(void) updateQueue:(NSArray<Customer *> *_Nullable)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
-
-//    __block NSArray<Customer *> *blockRef = queue;
+-(void) updateQueue{
     
-    [self callSortedQueue:nil withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
-//        blockRef = queue;
+    [self callSortedQueueWithCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
         
         [self.delegate setControllerQueue:queue];
-        if (completionBlock){
-            completionBlock();
-        }
     }];
 
 }
 
 //Removes Customer from queue, advances the queue and updates the passed in array
--(void) removeCustomer:(Customer *) customer fromQueue:(NSArray<Customer *> *)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
-
-    __block NSArray<Customer *> *blockRef = queue;
+-(void) removeCustomer:(Customer *) customer {
+ 
     __block int deletedCustomer = customer.queueNum;
     
     //Remove customer from queue and delete them in the background
@@ -76,12 +69,15 @@ id<RestaurantDelegate> _delegate;
     {
         self.numInQueue -= 1;
     }
+    else{
+        self.numInQueue = 0;
+    }
     [customer deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(error){
             NSLog(@"Error while deleting: %@", error);
         }
         //Advace customers behind the removed customer and update the queue
-        [self callSortedQueue:queue withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
+        [self callSortedQueueWithCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
             for(int i = deletedCustomer; i < queue.count; i += 1){
                 customer.queueNum -= 1;
                 [customer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -90,12 +86,16 @@ id<RestaurantDelegate> _delegate;
                     }
                 }];
             }
-            [self updateQueue:blockRef withCompletionBlock:completionBlock];
+            [self updateQueue];
         }];
         
     }];
     
-    
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error saving restaurant: %@", error);
+        }
+    }];
     
 }
 
@@ -112,7 +112,13 @@ id<RestaurantDelegate> _delegate;
         }
     }];
     
-    [self updateQueue:nil withCompletionBlock:nil];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"Error saving restaurant: %@", error);
+        }
+    }];
+    
+    [self updateQueue];
     
 }
 
@@ -120,13 +126,13 @@ id<RestaurantDelegate> _delegate;
 
 
 
--(void) callSortedQueue:(NSArray<Customer *> *)queue withCompletionBlock:(void (^_Nullable)(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error))completionBlock
+-(void) callSortedQueueWithCompletionBlock:(void (^_Nullable)(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error))completionBlock
 {
     PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
     
     
     [query whereKey:@"queueRestaurant" equalTo:self];
-    NSSortDescriptor *queueNumSort = [NSSortDescriptor sortDescriptorWithKey:@"queueNum" ascending:NO];
+    NSSortDescriptor *queueNumSort = [NSSortDescriptor sortDescriptorWithKey:@"queueNum" ascending:YES];
     [query orderBySortDescriptor:queueNumSort];
     
 
@@ -135,6 +141,8 @@ id<RestaurantDelegate> _delegate;
         if(error){
             NSLog(@"Error getting objects %@", error);
         }
+        
+        
         if(completionBlock){
             if(objects){
                 completionBlock(objects, error);

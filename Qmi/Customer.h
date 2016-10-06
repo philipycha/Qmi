@@ -16,6 +16,7 @@
 @interface Customer : PFObject
 
 @property (nonatomic) NSString * partySize;
+@property (nonatomic) NSString * name;
 @property (nonatomic, strong) User * user;
 @property (nonatomic) CLLocation * currentLocation;
 @property (nonatomic) Restaurant *queueRestaurant;
