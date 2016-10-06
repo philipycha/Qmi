@@ -9,13 +9,15 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "Restaurant.h"
+#import "Customer.h"
 @import GoogleMaps;
 @import GooglePlaces;
 @import UserNotifications;
 #import <YelpAPI/YelpAPI.h>
 
-
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
+
 
 @end
 
@@ -90,6 +92,7 @@
 //Called when a notification is delivered to a foreground app.
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
     NSLog(@"User Info : %@",notification.request.content.userInfo);
+    [self.delegate updateUsersView];
     completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
 }
 
@@ -149,7 +152,5 @@
         }
     }];
 }
-
-
 
 @end
