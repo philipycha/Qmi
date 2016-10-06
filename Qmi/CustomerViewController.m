@@ -306,6 +306,9 @@
 }
 
 -(void)joinQButtonPressed:(Restaurant *)restaurant{
+    
+    if(!self.currentCustomer){
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Party Info" message:NULL preferredStyle:UIAlertControllerStyleAlert];
     
     
@@ -348,7 +351,7 @@
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
     
-    
+    }
 }
 
 -(void)updateQueueInfoWindow{
@@ -356,7 +359,7 @@
     
     if (self.currentCustomer) {
         self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
-        self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum];
+        self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum + 1];
     }
     
     else{
