@@ -9,13 +9,15 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "Restaurant.h"
+#import "Customer.h"
 @import GoogleMaps;
 @import GooglePlaces;
 @import UserNotifications;
 #import <YelpAPI/YelpAPI.h>
 
-
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
+
 
 @end
 
@@ -100,6 +102,7 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    [self.delegate updateUsersView];
     [PFPush handlePush:userInfo];
 }
 
@@ -149,7 +152,5 @@
         }
     }];
 }
-
-
 
 @end
