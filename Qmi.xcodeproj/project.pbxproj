@@ -28,6 +28,8 @@
 		7D84B3541DA30BCC0013CCF3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D84B3531DA30BCC0013CCF3 /* User.m */; };
 		7D84B3561DA31FA20013CCF3 /* CustomerMainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */; };
 		7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E436D1DA351D300350E38 /* LocationManager.m */; };
+		7DA92E1C1DA5F8190070DB2E /* BasicInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA92E1B1DA5F8190070DB2E /* BasicInfoWindow.xib */; };
+		7DA92E1F1DA607410070DB2E /* BasicInfoWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DA92E1E1DA607410070DB2E /* BasicInfoWindowView.m */; };
 		D94747611DA5EFAA005BA38D /* RestaurantMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D94747601DA5EFAA005BA38D /* RestaurantMarker.m */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,9 @@
 		7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerMainView.storyboard; sourceTree = "<group>"; };
 		7D8E436C1DA351D300350E38 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		7D8E436D1DA351D300350E38 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		7DA92E1B1DA5F8190070DB2E /* BasicInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicInfoWindow.xib; sourceTree = "<group>"; };
+		7DA92E1D1DA607410070DB2E /* BasicInfoWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoWindowView.h; sourceTree = "<group>"; };
+		7DA92E1E1DA607410070DB2E /* BasicInfoWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInfoWindowView.m; sourceTree = "<group>"; };
 		D29B0170580968EFDC36A770 /* Pods-Qmi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.release.xcconfig"; sourceTree = "<group>"; };
 		D5A40C302271F19D694B0373 /* Pods-Qmi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qmi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Qmi/Pods-Qmi.debug.xcconfig"; sourceTree = "<group>"; };
 		D92453D31DA4732600AC4B5A /* Qmi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Qmi.entitlements; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		28251C491DA43553009156AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7DA92E1B1DA5F8190070DB2E /* BasicInfoWindow.xib */,
 				7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */,
 				28251C4A1DA43565009156AB /* LogIn.storyboard */,
 				7D84B3551DA31FA20013CCF3 /* CustomerMainView.storyboard */,
@@ -146,6 +152,8 @@
 			children = (
 				15F7CDC91DA4947000DE1033 /* CustomInfoWindowView.h */,
 				15F7CDCA1DA4947000DE1033 /* CustomInfoWindowView.m */,
+				7DA92E1D1DA607410070DB2E /* BasicInfoWindowView.h */,
+				7DA92E1E1DA607410070DB2E /* BasicInfoWindowView.m */,
 				28251C4C1DA43571009156AB /* LogInViewController.h */,
 				28251C4D1DA43571009156AB /* LogInViewController.m */,
 				158569011DA2E7C000C03008 /* RestaurantViewController.h */,
@@ -268,6 +276,7 @@
 				15B49D1D1DA34CDC00EFF6DE /* style.json in Resources */,
 				15F7CDCD1DA5621D00DE1033 /* LighthouseLabs.gpx in Resources */,
 				28251C4B1DA43565009156AB /* LogIn.storyboard in Resources */,
+				7DA92E1C1DA5F8190070DB2E /* BasicInfoWindow.xib in Resources */,
 				158569061DA2E7C000C03008 /* RestaurantQueue.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +339,7 @@
 				7D84B3541DA30BCC0013CCF3 /* User.m in Sources */,
 				7D84B3511DA2FBF90013CCF3 /* CustomerViewController.m in Sources */,
 				7D8E436E1DA351D300350E38 /* LocationManager.m in Sources */,
+				7DA92E1F1DA607410070DB2E /* BasicInfoWindowView.m in Sources */,
 				28D13C8A1DA5C74200A1F691 /* Restaurant.m in Sources */,
 				158569031DA2E7C000C03008 /* RestaurantViewController.m in Sources */,
 				158569001DA2E7C000C03008 /* AppDelegate.m in Sources */,
