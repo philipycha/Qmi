@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *queueRestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *quePositionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *removeQueueButton;
+@property (strong, nonatomic) Customer * currentCustomer;
+
 @end
 
 @implementation CustomerViewController
@@ -58,11 +60,6 @@
                                                                  zoom:15];
     GMSMapView *mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
    
-
-    
-    
-    self.queueRestLabel.text = @"Phil's Brothel";
-    self.quePositionLabel.text = @"3";
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
     
@@ -84,7 +81,8 @@
     
     self.queueView.layer.cornerRadius = 5;
     self.queueView.layer.masksToBounds = YES;
-    self.queueView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5f];
+    self.queueView.hidden = YES;
+    
     [self.view insertSubview: self.mapView atIndex: 0];
     [self.view insertSubview: self.queueView aboveSubview:mapView];
     
@@ -111,6 +109,8 @@
     }];
     
 }
+
+
 
 -(NSMutableArray *)restaurants{
     if(!_restaurants){
@@ -327,6 +327,9 @@
         
         [newCustomer saveInBackground];
         [restaurant saveInBackground];
+        self.currentCustomer = newCustomer;
+        self.queueView.hidden = NO;
+        [self updateQueueInfoWindow];
         
         NSString *channel = [restaurant.user fetchIfNeeded].username;
         if(channel == nil){
@@ -348,11 +351,26 @@
     
 }
 
+-(void)updateQueueInfoWindow{
+    [self.currentCustomer fetchIfNeeded];
+    
+    if (self.currentCustomer) {
+        self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
+        self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum];
+    }
+    
+    else{
+        self.queueView.hidden = YES;
+    }
+}
+
 
 #pragma mark - ViewUpdateDelegate
 
 -(void)updateUsersView
 {
+    [self updateQueueInfoWindow];
+    
     //Update the Customer view
 }
 

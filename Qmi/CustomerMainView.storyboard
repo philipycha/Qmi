@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z6L-TD-mwJ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z6L-TD-mwJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -21,48 +21,56 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-HD-hKu">
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HzZ-kE-4if">
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N9b-pz-3ou">
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Queue #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Id-Vd-2X7">
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="textColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJY-Gp-oFB">
-                                                <state key="normal" title="Remove">
-                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Qmi-QueueInfo" translatesAutoresizingMaskIntoConstraints="NO" id="zj1-GE-czO"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7F-Jx-CRL">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="GDh-W7-8so"/>
+                                            <constraint firstAttribute="width" constant="46" id="qGm-M3-Pwh"/>
+                                        </constraints>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsl-Qt-DR2">
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0I-9k-PXG">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="GGu-1l-CEY"/>
+                                            <constraint firstAttribute="height" constant="40" id="M7R-ev-8Zh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="HzZ-kE-4if" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" id="0J1-mG-bNV"/>
-                                    <constraint firstAttribute="height" constant="100" id="DTD-Iz-mIj"/>
-                                    <constraint firstAttribute="width" constant="100" id="NFg-0c-YaW"/>
-                                    <constraint firstAttribute="bottom" secondItem="HzZ-kE-4if" secondAttribute="bottom" id="Pg6-G5-bAR"/>
-                                    <constraint firstAttribute="trailing" secondItem="HzZ-kE-4if" secondAttribute="trailing" id="hXL-GR-Wlh"/>
-                                    <constraint firstItem="HzZ-kE-4if" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="top" id="hgp-IP-6hF"/>
+                                    <constraint firstItem="dsl-Qt-DR2" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="top" constant="15" id="Amt-F7-g9o"/>
+                                    <constraint firstAttribute="width" constant="175" id="B7j-XK-t4B"/>
+                                    <constraint firstItem="zj1-GE-czO" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" id="Eha-PB-n6Y"/>
+                                    <constraint firstAttribute="bottom" secondItem="L7F-Jx-CRL" secondAttribute="bottom" id="NJP-AY-SJk"/>
+                                    <constraint firstAttribute="height" constant="115" id="T7W-mi-paK"/>
+                                    <constraint firstItem="X0I-9k-PXG" firstAttribute="top" secondItem="dsl-Qt-DR2" secondAttribute="bottom" constant="15" id="W81-sT-X31"/>
+                                    <constraint firstAttribute="trailing" secondItem="zj1-GE-czO" secondAttribute="trailing" id="WvE-4D-DmL"/>
+                                    <constraint firstAttribute="bottom" secondItem="zj1-GE-czO" secondAttribute="bottom" id="fHN-SQ-B8D"/>
+                                    <constraint firstAttribute="trailing" secondItem="dsl-Qt-DR2" secondAttribute="trailing" constant="86" id="hfW-Mh-o8E"/>
+                                    <constraint firstItem="dsl-Qt-DR2" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" constant="31" id="o7r-eO-LbR"/>
+                                    <constraint firstItem="X0I-9k-PXG" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" constant="39" id="ruQ-Bf-jRD"/>
+                                    <constraint firstAttribute="trailing" secondItem="L7F-Jx-CRL" secondAttribute="trailing" id="vQw-9Q-ZiZ"/>
+                                    <constraint firstItem="zj1-GE-czO" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="top" id="x4Z-Is-V6f"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2HN-W5-jRi" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="bottom" constant="20" id="Q3Z-oC-KMq"/>
-                            <constraint firstItem="Vo2-HD-hKu" firstAttribute="leading" secondItem="2JP-fM-LGi" secondAttribute="leadingMargin" constant="20" id="gai-hg-YmG"/>
+                            <constraint firstItem="Vo2-HD-hKu" firstAttribute="leading" secondItem="2JP-fM-LGi" secondAttribute="leadingMargin" id="8u0-t0-LUs"/>
+                            <constraint firstItem="2HN-W5-jRi" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="bottom" constant="20" id="akP-77-dbU"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="quePositionLabel" destination="0Id-Vd-2X7" id="Xqo-oc-Wf1"/>
-                        <outlet property="queueRestLabel" destination="N9b-pz-3ou" id="WHn-Bk-3ra"/>
+                        <outlet property="quePositionLabel" destination="X0I-9k-PXG" id="hfv-NQ-gim"/>
+                        <outlet property="queueRestLabel" destination="dsl-Qt-DR2" id="4Vu-Kb-mjo"/>
                         <outlet property="queueView" destination="Vo2-HD-hKu" id="m6s-HX-8bo"/>
-                        <outlet property="removeQueueButton" destination="zJY-Gp-oFB" id="xJw-rc-zsR"/>
+                        <outlet property="removeQueueButton" destination="L7F-Jx-CRL" id="C64-u9-Ch1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oi6-X4-tsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,4 +78,7 @@
             <point key="canvasLocation" x="-231.19999999999999" y="120.98950524737631"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Qmi-QueueInfo" width="551" height="370"/>
+    </resources>
 </document>
