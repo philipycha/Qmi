@@ -166,6 +166,7 @@ id<RestaurantDelegate> _delegate;
         if(completionBlock){
             if(objects){
                 self.numInQueue = (int) objects.count;
+                [self saveInBackground];
                 completionBlock(objects, error);
             }else{completionBlock(nil, error);}
         }
