@@ -19,6 +19,7 @@
 }
 
 
+@dynamic name;
 @dynamic user;
 @dynamic partySize;
 @dynamic currentLocation;
