@@ -16,8 +16,8 @@
 @import UserNotifications;
 #import <YelpAPI/YelpAPI.h>
 
-
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
+
 
 @end
 
@@ -102,17 +102,7 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    User *currentUser = [User currentUser];
-    if([currentUser fetchIfNeeded].isCustomer)
-    {
-        PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
-        
-        
-    }else{
-        
-    }
-    
-    
+    [self.delegate updateUsersView];
     [PFPush handlePush:userInfo];
 }
 
@@ -162,7 +152,5 @@
         }
     }];
 }
-
-
 
 @end

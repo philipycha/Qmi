@@ -15,8 +15,10 @@
 #import "LocationManager.h"
 #import "CustomInfoWindowView.h"
 #import "BasicInfoWindowView.h"
+#import "ViewUpdateDelegate.h"
+#import "AppDelegate.h"
 
-@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate>
+@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, InfoWindowDelegate, ViewUpdateDelegate>
 
 @property (nonatomic, strong) Restaurant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
@@ -33,6 +35,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //set view update delegate to self
+    AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    appDelegate.delegate = self;
     
     self.locationManager = [LocationManager sharedLocationManager];
     [self.locationManager startLocationMonitoring];
@@ -268,7 +274,7 @@
     if(restaurantMarker.restaurant){
         CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
         infoWindow.RestaurantNameLabel.text = marker.title;
-        infoWindow.QueueSizeLabel.text = @"2";
+        infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", restaurantMarker.restaurant.numInQueue];
         infoWindow.delegate = self;
         [infoWindow showRating:marker.snippet];
         return infoWindow;
@@ -325,6 +331,13 @@
     
 }
 
+
+#pragma mark - ViewUpdateDelegate
+
+-(void)updateUsersView
+{
+    //Update the Customer view
+}
 
 
 /*

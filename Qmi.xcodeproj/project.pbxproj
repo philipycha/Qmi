@@ -56,6 +56,7 @@
 		284BE4781AE55F08B2E5332F /* Pods_Qmi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qmi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D13C881DA5C74200A1F691 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		28D13C891DA5C74200A1F691 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
+		28D713F21DA6DFA100E13347 /* ViewUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUpdateDelegate.h; sourceTree = "<group>"; };
 		7D5C87171DA479B200C26093 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
 		7D84B3441DA2EFE90013CCF3 /* QueueViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueViewCell.h; sourceTree = "<group>"; };
 		7D84B3451DA2EFE90013CCF3 /* QueueViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueViewCell.m; sourceTree = "<group>"; };
@@ -150,6 +151,7 @@
 		28B6A1B31DA330A100A0AD33 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				28D713F21DA6DFA100E13347 /* ViewUpdateDelegate.h */,
 				28D713EF1DA6D7BF00E13347 /* CustomerView */,
 				28D713F01DA6D7CD00E13347 /* LoginView */,
 				28D713F11DA6D7D700E13347 /* RestaurantView */,

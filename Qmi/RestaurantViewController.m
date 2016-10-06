@@ -10,8 +10,10 @@
 #import "Restaurant.h"
 #import "Customer.h"
 #import "QueueViewCell.h"
+#import "ViewUpdateDelegate.h"
+#import "AppDelegate.h"
 
-@interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource, RestaurantDelegate>
+@interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource, RestaurantDelegate, ViewUpdateDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) Restaurant * resturant;
@@ -25,9 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.queue = [[NSArray alloc] init];
-
     
-    
+    //set view update delegate to self
+    AppDelegate *appDelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    appDelegate.delegate = self;
     
     
 //    [self createTestData];
@@ -120,6 +123,13 @@
 {
     self.queue = queue;
     [self.tableView reloadData];
+}
+
+
+#pragma mark - ViewUpdateDelegate
+
+-(void)updateUsersView{
+    [self.resturant updateQueue];
 }
 
 @end
