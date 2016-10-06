@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "Restaurant.h"
+#import "Customer.h"
 @import GoogleMaps;
 @import GooglePlaces;
 @import UserNotifications;
@@ -98,6 +100,17 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    User *currentUser = [User currentUser];
+    if([currentUser fetchIfNeeded].isCustomer)
+    {
+        PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
+        
+        
+    }else{
+        
+    }
+    
+    
     [PFPush handlePush:userInfo];
 }
 

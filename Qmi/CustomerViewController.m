@@ -95,6 +95,8 @@
     }
     return _restaurants;
 }
+
+
 -(void)updateCamera{
     GMSCameraPosition *updatedCamera = [GMSCameraPosition
                                         cameraWithLatitude:self.locationManager.currentLocation.coordinate.latitude
@@ -252,7 +254,7 @@
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
     RestaurantMarker *restaurantMarker = (RestaurantMarker *)marker;
     if(restaurantMarker.restaurant){
-        [self joinQButtonPressed];
+        [self joinQButtonPressed:restaurantMarker.restaurant];
     }
     
     //add else to do something for regular markers
@@ -280,7 +282,7 @@
 
 }
 
--(void)joinQButtonPressed{
+-(void)joinQButtonPressed:(Restaurant *)restaurant{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Party Info" message:NULL preferredStyle:UIAlertControllerStyleAlert];
     
     
@@ -297,15 +299,18 @@
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         
-        Customer *newCustomer = [[Customer alloc]init];
-        //      replace init with initWith... once CoreLocation and User are linked
+        Customer *newCustomer = [Customer customerWithUser:[User currentUser] partySize:sizeOfPartyTextField.text andDistance:@"Calculate this"];
+        [restaurant addCustomer:newCustomer];
         
-        newCustomer.partySize = sizeOfPartyTextField.text;
+        [newCustomer saveInBackground];
+        [restaurant saveInBackground];
         
-        NSLog(@"%@", newCustomer.partySize);
+        NSString *channel = [restaurant.user fetchIfNeeded].username;
+        if(channel == nil){
+            channel = @"";
+        }
         
-        
-        //        [self.selectedRestaurant queueCustomer:newCustomer];
+        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"a new customer has been added to your Queue", @"channel":channel}];
         
     }];
     
@@ -316,6 +321,7 @@
     [alertController addAction:closeAction];
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
+    
     
 }
 

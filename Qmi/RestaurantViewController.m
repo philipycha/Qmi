@@ -72,7 +72,7 @@
     
     for(int i = 0; i < 6; i+=1)
     {
-        Customer *newCustomer = [Customer customerWithUser:nil partySize:[NSString stringWithFormat:@"%d",(i+1)] andCurentLocation:nil];
+        Customer *newCustomer = [Customer customerWithUser:nil partySize:[NSString stringWithFormat:@"%d",(i+1)] andDistance:@"5 min"];
         newCustomer.queueNum = i;
         newCustomer.name = [NSString stringWithFormat:@"Customer Number %d", i];
         [newRestaurant addCustomer:newCustomer];
