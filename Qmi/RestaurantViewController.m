@@ -25,16 +25,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.queue = [[NSArray alloc] init];
+
     
-    [self setCurrentUsersRestaurant];
+    
     
     
 //    [self createTestData];
     
+    [self setCurrentUsersRestaurant];
+    [self.resturant updateQueue];
     
-    [self.resturant updateQueue:self.queue withCompletionBlock:^{
-    }];
-    
+    self.title = self.resturant.name;
     
 }
 
@@ -53,40 +54,36 @@
     else{
         Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
         newRestaurant.user = [User currentUser];
+        newRestaurant.name = newRestaurant.user.name;
+        
         self.resturant = newRestaurant;
         NSLog(@"\n New Restaurant created\n");
         [self.resturant saveInBackground];
     }
-    
 }
 
 
-//TESTING
-//-(void)createTestData
-//{
-//    Customer *c1 = [Customer customerWithUser:nil partySize:@"4" andCurentLocation:nil];
-//    Customer *c2 = [Customer customerWithUser:nil partySize:@"5" andCurentLocation:nil];
-//    Customer *c3 = [Customer customerWithUser:nil partySize:@"8" andCurentLocation:nil];
-//    Customer *c4 = [Customer customerWithUser:nil partySize:@"2" andCurentLocation:nil];
-//    
-//    Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
-//    
-//    newRestaurant.user = [User currentUser];
-//    self.resturant = newRestaurant;
-//    
-//    [newRestaurant addCustomer:c1 toQueue:self.queue withCompletionBlock:nil];
-//    [newRestaurant addCustomer:c2 toQueue:self.queue withCompletionBlock:nil];
-//    [newRestaurant addCustomer:c3 toQueue:self.queue withCompletionBlock:nil];
-//    [newRestaurant addCustomer:c4 toQueue:self.queue withCompletionBlock:nil];
-//    
-//    
-//    [newRestaurant saveInBackground];
-//    [c1 saveInBackground];
-//    [c2 saveInBackground];
-//    [c3 saveInBackground];
-//    [c4 saveInBackground];
-//    
-//}
+//TESTING FN
+-(void)createTestData
+{
+    Restaurant *newRestaurant = [Restaurant objectWithClassName:@"Restaurant"];
+    newRestaurant.user = [User currentUser];
+    newRestaurant.name = newRestaurant.user.name;
+    
+    for(int i = 0; i < 6; i+=1)
+    {
+        Customer *newCustomer = [Customer customerWithUser:nil partySize:[NSString stringWithFormat:@"%d",(i+1)] andCurentLocation:nil];
+        newCustomer.queueNum = i;
+        newCustomer.name = [NSString stringWithFormat:@"Customer Number %d", i];
+        [newRestaurant addCustomer:newCustomer];
+        [newCustomer saveInBackground];
+    }
+    
+    self.resturant = newRestaurant;
+    
+    [newRestaurant saveInBackground];
+}
+//END TESTING FN
 
 
 - (void)didReceiveMemoryWarning {
@@ -103,7 +100,7 @@
     
     
     
-    cell.customerNameLabel.text = [self.queue[indexPath.row].user fetchIfNeeded].name;
+    cell.customerNameLabel.text = [self.queue[indexPath.row] fetchIfNeeded].name;
     
     return cell;
 }
@@ -111,10 +108,8 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
-        [self.resturant removeCustomer:self.queue[indexPath.row] fromQueue:self.queue withCompletionBlock:nil];
-//        [self.tableView beginUpdates];
-//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [self.tableView endUpdates];
+        [self.resturant removeCustomer:self.queue[indexPath.row]];
+
     }
 }
 
