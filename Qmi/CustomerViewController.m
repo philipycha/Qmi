@@ -10,7 +10,8 @@
 #import "GoogleMapsRestaurant.h"
 @import GooglePlaces;
 @import GoogleMaps;
-
+#import <Parse/Parse.h>
+#import "RestaurantMarker.h"
 #import "LocationManager.h"
 #import "CustomInfoWindowView.h"
 
@@ -46,7 +47,7 @@
     GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView.myLocationEnabled = YES;
     mapView.delegate = self;
-
+    
     
     NSBundle *mainBundle = [NSBundle mainBundle];
     NSURL *styleUrl = [mainBundle URLForResource:@"style" withExtension:@"json"];
@@ -65,11 +66,11 @@
     
     mapView.settings.compassButton = YES;
     mapView.settings.myLocationButton = YES;
-
+    
     NSLog(@"user location:%@", mapView.myLocation);
     NSLog(@"location manager user location:%@", self.locationManager.currentLocation);
     
-
+    
     [[GMSPlacesClient sharedClient] currentPlaceWithCallback:^(GMSPlaceLikelihoodList * _Nullable likelihoodList, NSError * _Nullable error) {
         if (error != nil) {
             NSLog(@"Current Place error %@", [error localizedDescription]);
@@ -84,7 +85,7 @@
             NSLog(@"Current PlaceID %@", place.placeID);
         }
     }];
-
+    
 }
 
 -(NSMutableArray *)restaurants{
@@ -119,6 +120,17 @@
             
             NSArray *restaurantsFromJSONDict = [dictFromJSON objectForKey:@"results"];
             
+            
+            PFQuery *query = [PFQuery queryWithClassName:[Restaurant parseClassName]];
+            NSArray *parseRestaurants = [query findObjects];
+            NSSet *parseRestaurantsSet = [[NSSet alloc] init];
+            if(parseRestaurants)
+            {
+                parseRestaurantsSet = [NSSet setWithArray:parseRestaurants];
+            }
+            
+            
+            
             for (NSDictionary *restaurant in restaurantsFromJSONDict)
             {
                 NSString *name = [restaurant objectForKey:@"name"];
@@ -132,8 +144,19 @@
                 CLLocationCoordinate2D restaurantLocation = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
                 GoogleMapsRestaurant *newRestaurant = [[GoogleMapsRestaurant alloc] initWithName:name address:address rating: rating andCoordinate:restaurantLocation];
                 
+                for(Restaurant *restaurant in parseRestaurantsSet)
+                {
+                    if([restaurant.name isEqualToString:name])
+                    {
+                        newRestaurant.restaurant = restaurant;
+                        break;
+                    }
+                }
+                
+                
+                
                 [self.restaurants addObject:newRestaurant];
-            
+                
                 
             }
             
@@ -147,19 +170,11 @@
                 self.lastPageToken = self.currentPageToken;
                 
                 [self fetchRestaurantsWithURL:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=%@&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.currentPageToken]];
-                
-                NSLog(@"token different, resquest FIRED");
-                
-            } else {
-                
-                NSLog(@"token still the same, request didnt go through");
             }
-
-            NSLog(@"RESTAURANT COUNT HERE %i", self.restaurants.count);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self passMarkerInfo];
-
+                
             });
         }
     }];
@@ -187,15 +202,27 @@
     
     for (GoogleMapsRestaurant *restaurant in self.restaurants) {
         
+        
+        
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(restaurant.coordinate.latitude, restaurant.coordinate.longitude);
-        GMSMarker *restaurantMarker = [GMSMarker markerWithPosition:position];
+        RestaurantMarker *restaurantMarker = [RestaurantMarker markerWithPosition:position];
         restaurantMarker.title = restaurant.name;
-        restaurantMarker.icon = [UIImage imageNamed:@"Qmi-Pin"];
-        restaurantMarker.icon = [self image:restaurantMarker.icon scaledToSize:CGSizeMake(40.0f, 50.0f)];
+        if(restaurant.restaurant){
+            restaurantMarker.icon = [UIImage imageNamed:@"Qmi-Pin"];
+            restaurantMarker.icon = [self image:restaurantMarker.icon scaledToSize:CGSizeMake(40.0f, 50.0f)];
+            restaurantMarker.iconView.backgroundColor = [UIColor redColor];
+            restaurantMarker.restaurant = restaurant.restaurant;
+        }
+        else{
+            restaurantMarker.iconView.backgroundColor = [UIColor purpleColor];
+        }
         restaurantMarker.opacity = 1.0;
         restaurantMarker.appearAnimation = kGMSMarkerAnimationPop;
         restaurantMarker.snippet = restaurant.rating;
+       
         restaurantMarker.map = self.mapView;
+        
+        
         
     }
 }
@@ -224,19 +251,36 @@
 
 
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
-    [self joinQButtonPressed];
+    RestaurantMarker *restaurantMarker = (RestaurantMarker *)marker;
+    if(restaurantMarker.restaurant){
+        [self joinQButtonPressed];
+    }
+    
+    //add else to do something for regular markers
+    
 }
 
 -(UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
-    CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
-    infoWindow.RestaurantNameLabel.text = marker.title;
-    infoWindow.QueueSizeLabel.text = @"2";
-    infoWindow.delegate = self;
-    [infoWindow showRating:marker.snippet];
     
+    RestaurantMarker *restaurantMarker = (RestaurantMarker*) marker;
     
-    
-    return infoWindow;
+    if(restaurantMarker.restaurant){
+        CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
+        infoWindow.RestaurantNameLabel.text = marker.title;
+        infoWindow.QueueSizeLabel.text = @"2";
+        infoWindow.delegate = self;
+        [infoWindow showRating:marker.snippet];
+        return infoWindow;
+    }
+    else{
+        
+        UIView *view = [[UIView alloc] init];
+        view.frame = CGRectMake(20, 20, 20, 20);
+        view.backgroundColor = [UIColor redColor];
+        return view;
+        
+        
+    }
 }
 
 -(void)joinQButtonPressed{
@@ -264,7 +308,7 @@
         NSLog(@"%@", newCustomer.partySize);
         
         
-//        [self.selectedRestaurant queueCustomer:newCustomer];
+        //        [self.selectedRestaurant queueCustomer:newCustomer];
         
     }];
     
@@ -281,13 +325,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

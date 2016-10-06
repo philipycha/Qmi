@@ -20,6 +20,7 @@ id<RestaurantDelegate> _delegate;
 
 @dynamic numInQueue;
 @dynamic user;
+@dynamic name;
 
 #pragma mark - Delegate getter/setter
 
@@ -48,11 +49,11 @@ id<RestaurantDelegate> _delegate;
 #pragma mark - Public Methods
 
 //Updates the passed in queue in the background
--(void) updateQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
+-(void) updateQueue:(NSArray<Customer *> *_Nullable)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
 
 //    __block NSArray<Customer *> *blockRef = queue;
     
-    [self callSortedQueue:queue withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
+    [self callSortedQueue:nil withCompletionBlock:^(NSArray<Customer *> * _Nullable queue, NSError * _Nullable error) {
 //        blockRef = queue;
         
         [self.delegate setControllerQueue:queue];
@@ -100,7 +101,7 @@ id<RestaurantDelegate> _delegate;
 
 
 //Add a new customer to the restaurants queue
--(void) addCustomer:(Customer *_Nonnull) customer toQueue:(NSArray<Customer *> *_Nonnull)queue withCompletionBlock:(void (^_Nullable)())completionBlock{
+-(void) addCustomer:(Customer *_Nonnull) customer {
     customer.queueRestaurant = self;
     customer.queueNum = self.numInQueue;
     self.numInQueue += 1;
@@ -111,7 +112,7 @@ id<RestaurantDelegate> _delegate;
         }
     }];
     
-    [self updateQueue:queue withCompletionBlock:completionBlock];
+    [self updateQueue:nil withCompletionBlock:nil];
     
 }
 
