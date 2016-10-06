@@ -15,5 +15,8 @@
 @property (nonatomic, strong) NSString * phoneNumber;
 @property (nonatomic) BOOL isCustomer;
 
++(User *)userCustomerWithName:(NSString *)name andPhoneNumber:(NSString *)phoneNumber;
++(User *)userRestaurantWithName:(NSString *)name andPhoneNumber:(NSString *)phoneNumber;
+
 
 @end

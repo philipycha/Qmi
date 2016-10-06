@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Restaurant.h"
 @import CoreLocation;
 
 @interface GoogleMapsRestaurant : NSObject
@@ -15,6 +16,7 @@
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * address;
 @property (nonatomic) NSString * rating;
+@property (nonatomic) Restaurant *restaurant;
 
 - (instancetype)initWithName:(NSString *)name address:(NSString *)address rating:(NSString *)rating andCoordinate:(CLLocationCoordinate2D)coordinate;
 

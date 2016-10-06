@@ -22,15 +22,17 @@
 @dynamic user;
 @dynamic partySize;
 @dynamic currentLocation;
+@dynamic queueRestaurant;
+@dynamic queueNum;
 
--(instancetype)initWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation{
-    self = [super initWithClassName:[Customer parseClassName]];
-    if (self) {
-        self.user = [User currentUser];
-        self.partySize = partySize;
-        self.currentLocation = currentLocation;
-    }
-    return self;
++(Customer *)customerWithUser:(User *) user partySize:(NSString *) partySize andCurentLocation:(CLLocation *) currentLocation{
+    Customer *newCustomer = [Customer objectWithClassName:[Customer parseClassName]];
+    
+    newCustomer.partySize = partySize;
+    newCustomer.user = user;
+    newCustomer.currentLocation = currentLocation;
+    
+    return newCustomer;
 }
 
 +(NSString *)parseClassName
