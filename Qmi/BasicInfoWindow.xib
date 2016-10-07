@@ -17,16 +17,16 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="142" id="YlF-wG-vxS"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="nHw-2a-kvc" secondAttribute="trailing" id="ABu-SS-RHU"/>
+                <constraint firstItem="YeD-1X-XAH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-4.75" id="B4U-jN-lCk"/>
                 <constraint firstAttribute="bottom" secondItem="nHw-2a-kvc" secondAttribute="bottom" id="Bze-gQ-O1O"/>
                 <constraint firstItem="nHw-2a-kvc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fqp-9n-Dcb"/>
-                <constraint firstItem="YeD-1X-XAH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="FtR-VP-nIT"/>
                 <constraint firstItem="YeD-1X-XAH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QRD-9H-L4z"/>
                 <constraint firstItem="nHw-2a-kvc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l6t-n3-ccS"/>
             </constraints>
@@ -38,6 +38,6 @@
         </view>
     </objects>
     <resources>
-        <image name="QmiBasicInfoWindow" width="1016" height="847"/>
+        <image name="QmiBasicInfoWindow" width="991" height="822"/>
     </resources>
 </document>
