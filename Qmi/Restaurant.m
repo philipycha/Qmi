@@ -63,13 +63,8 @@ id<RestaurantDelegate> _delegate;
  
     __block int deletedCustomer = customer.queueNum;
     
-    NSString *channel = [customer.user fetchIfNeeded].username;
     
-    if(!channel){
-        channel = @"";
-    }
-    
-    [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"Removed from Queue", @"channel":channel}];
+
     
     //Remove customer from queue and delete them in the background
     customer.queueRestaurant = nil;
@@ -104,6 +99,16 @@ id<RestaurantDelegate> _delegate;
                 }
                 
             }
+            
+            
+            //Send Notification to the user that they have been removed
+            NSString *channel = [customer.user fetchIfNeeded].username;
+            if(!channel){
+                channel = @"";
+            }
+            [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"Removed from Queue", @"channel":channel}];
+            
+            
             [self updateQueue];
         }];
         
@@ -164,18 +169,21 @@ id<RestaurantDelegate> _delegate;
         }
         
         
-        if(completionBlock){
-            completionBlock(objects, error);
-        }
-        
         if(objects)
         {
             self.numInQueue = (int) objects.count;
-        
+            
         }else{
             self.numInQueue = 0;
         }
         [self saveInBackground];
+        
+        
+        if(completionBlock){
+            completionBlock(objects, error);
+        }
+        
+
         
         
     }];

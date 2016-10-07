@@ -425,6 +425,11 @@
             [self fadeInAnimation:self.queueView];
             self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
             self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum + 1];
+            
+            self.infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", [self.currentRestaurant fetchIfNeeded].numInQueue];
+            
+            
+            
         }
         
         else{

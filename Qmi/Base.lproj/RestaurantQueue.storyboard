@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QueueViewCell" id="Nsc-tr-QFx" customClass="QueueViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nsc-tr-QFx" id="wXA-0f-0v0">
                                             <frame key="frameInset" width="375" height="43.5"/>
@@ -84,7 +84,7 @@
                             <constraint firstItem="mZm-Co-xk4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EPA-im-ojK"/>
                             <constraint firstItem="mZm-Co-xk4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IVO-lp-fH5"/>
                             <constraint firstItem="FyE-Ne-xEu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cgD-vj-HFt"/>
-                            <constraint firstItem="FyE-Ne-xEu" firstAttribute="top" secondItem="mZm-Co-xk4" secondAttribute="bottom" constant="-50" id="kmQ-Hf-3Kf"/>
+                            <constraint firstItem="FyE-Ne-xEu" firstAttribute="top" secondItem="mZm-Co-xk4" secondAttribute="bottom" id="kmQ-Hf-3Kf"/>
                             <constraint firstAttribute="trailing" secondItem="FyE-Ne-xEu" secondAttribute="trailing" id="l1U-S3-jMA"/>
                         </constraints>
                     </view>
