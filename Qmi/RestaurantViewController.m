@@ -16,6 +16,7 @@
 @interface RestaurantViewController () <UITableViewDelegate, UITableViewDataSource, RestaurantDelegate, ViewUpdateDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) Restaurant * resturant;
 @property (nonatomic) NSArray<Customer *> *queue;
 
@@ -38,7 +39,7 @@
     [self setCurrentUsersRestaurant];
     [self.resturant updateQueue];
     
-    self.title = self.resturant.name;
+    self.titleLabel.text = self.resturant.name;
     
 }
 
@@ -99,11 +100,13 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    QueueViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    QueueViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QueueViewCell" forIndexPath:indexPath];
     
     
     
     cell.customerNameLabel.text = [self.queue[indexPath.row] fetchIfNeeded].name;
+    cell.partySizeLabel.text = [self.queue[indexPath.row] fetchIfNeeded].partySize;
+    
     
     return cell;
 }
@@ -115,6 +118,7 @@
 
     }
 }
+
 
 
 #pragma mark - RestaurantDelegate
