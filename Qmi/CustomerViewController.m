@@ -18,8 +18,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ViewUpdateDelegate.h"
 #import "AppDelegate.h"
+#import <CoreGraphics/CoreGraphics.h>
 
-@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, ViewUpdateDelegate>
+@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, ViewUpdateDelegate, CAAnimationDelegate>
 
 @property (nonatomic, strong) Restaurant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
@@ -89,6 +90,8 @@
     [self.view insertSubview: self.mapView atIndex: 0];
     [self.view insertSubview: self.queueView aboveSubview:mapView];
     
+    
+    
     mapView.settings.compassButton = YES;
     mapView.settings.myLocationButton = YES;
     
@@ -134,6 +137,7 @@
     self.mapView.camera = updatedCamera;
     
 }
+
 
 -(void)fetchRestaurantsWithURL:(NSString *)urlString{
     
@@ -324,7 +328,7 @@
         
     }];
     
-    
+        
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         [restaurant fetchIfNeeded];
@@ -340,6 +344,7 @@
         
         //Show the position in Queue indicator, unselect the map marker to hide the info window
         self.queueView.hidden = NO;
+        [self fadeInAnimation:self.queueView];
         [self updateQueueInfoWindow];
         self.mapView.selectedMarker = nil;
         
@@ -402,6 +407,16 @@
     }
 }
 
+-(void)fadeInAnimation:(UIView *)aView {
+    
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionMoveIn;
+    transition.duration = 0.175f;
+    transition.delegate = self;
+    [aView.layer addAnimation:transition forKey:nil];
+}
+
+
 
 #pragma mark - ViewUpdateDelegate
 
@@ -411,6 +426,7 @@
     
     //Update the Customer view
 }
+
 
 
 /*
