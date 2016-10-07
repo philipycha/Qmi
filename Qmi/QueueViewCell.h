@@ -11,5 +11,6 @@
 @interface QueueViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *customerNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *partySizeLabel;
 
 @end

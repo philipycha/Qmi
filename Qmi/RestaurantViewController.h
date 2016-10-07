@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RestaurantViewController : UIViewController
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *partySizeLabel;
 
 
 @end

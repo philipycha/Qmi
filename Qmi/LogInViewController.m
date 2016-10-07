@@ -22,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -47,6 +49,22 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
+    [self logIn];
+}
+
+- (IBAction)emailEnterButtonPressed:(UITextField *)sender {
+    [self.passwordTextField becomeFirstResponder];
+}
+
+- (IBAction)passwordEnterButtonPressed:(UITextField *)sender {
+    [self logIn];
+}
+
+
+
+#pragma mark - self methods
+
+-(void)logIn{
     if([User logInWithUsername:self.emailTextField.text password:self.passwordTextField.text]){
         
         User *currentUser = [User currentUser];
@@ -58,14 +76,11 @@
         else{
             [self performSegueWithIdentifier:@"ShowRestaurantQueue" sender:self];
         }
-    
+        
     }else{
         [self presentBasicAlertWithTitle:@"Login Failed" andMessage:@""];
     }
 }
-
-
-#pragma mark - self Functions
 
 - (void)showUpSignUpAlert
 {
@@ -159,11 +174,14 @@
 }
 
 -(void)presentBasicAlertWithTitle:(NSString *)title andMessage:(NSString*)message{
+    
     UIAlertController *signUpFailedAlert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [signUpFailedAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
+    
+    [self presentViewController:signUpFailedAlert animated:YES completion:nil];
 }
 
 

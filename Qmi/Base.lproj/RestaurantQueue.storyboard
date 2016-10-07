@@ -22,14 +22,22 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FyE-Ne-xEu">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Nsc-tr-QFx" customClass="QueueViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QueueViewCell" id="Nsc-tr-QFx" customClass="QueueViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nsc-tr-QFx" id="wXA-0f-0v0">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwV-TL-mRv">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUd-bz-VnT">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="dEl-79-JrL"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -37,11 +45,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uwV-TL-mRv" firstAttribute="centerY" secondItem="wXA-0f-0v0" secondAttribute="centerY" id="6pB-Rm-1yS"/>
+                                                <constraint firstItem="nUd-bz-VnT" firstAttribute="trailing" secondItem="wXA-0f-0v0" secondAttribute="trailingMargin" id="a0U-9w-ajS"/>
+                                                <constraint firstItem="nUd-bz-VnT" firstAttribute="centerY" secondItem="wXA-0f-0v0" secondAttribute="centerY" id="gcP-fY-HeO"/>
                                                 <constraint firstItem="uwV-TL-mRv" firstAttribute="leading" secondItem="wXA-0f-0v0" secondAttribute="leadingMargin" constant="10" id="myE-n8-ogI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="customerNameLabel" destination="uwV-TL-mRv" id="Bgx-t5-JJY"/>
+                                            <outlet property="partySizeLabel" destination="nUd-bz-VnT" id="jm6-Gu-7yI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -50,22 +61,38 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0E6-2a-kBQ"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZm-Co-xk4">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaU-We-VHH">
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7Ns-w2-nK2"/>
+                                    <constraint firstItem="JaU-We-VHH" firstAttribute="centerY" secondItem="mZm-Co-xk4" secondAttribute="centerY" id="CVx-b4-fwS"/>
+                                    <constraint firstItem="JaU-We-VHH" firstAttribute="centerX" secondItem="mZm-Co-xk4" secondAttribute="centerX" id="wud-oS-xsm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FyE-Ne-xEu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="2zU-Zw-vOW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FyE-Ne-xEu" secondAttribute="bottom" id="9yM-Le-T9l"/>
+                            <constraint firstAttribute="trailing" secondItem="mZm-Co-xk4" secondAttribute="trailing" id="Dhm-Rb-huX"/>
+                            <constraint firstItem="mZm-Co-xk4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EPA-im-ojK"/>
+                            <constraint firstItem="mZm-Co-xk4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IVO-lp-fH5"/>
                             <constraint firstItem="FyE-Ne-xEu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cgD-vj-HFt"/>
+                            <constraint firstItem="FyE-Ne-xEu" firstAttribute="top" secondItem="mZm-Co-xk4" secondAttribute="bottom" constant="-50" id="kmQ-Hf-3Kf"/>
                             <constraint firstAttribute="trailing" secondItem="FyE-Ne-xEu" secondAttribute="trailing" id="l1U-S3-jMA"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="+" id="4fT-EU-Phh"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="YUj-tJ-xFQ"/>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="FyE-Ne-xEu" id="KGx-cZ-GaK"/>
+                        <outlet property="titleLabel" destination="JaU-We-VHH" id="3vq-yT-ghB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
