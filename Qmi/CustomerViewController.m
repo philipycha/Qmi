@@ -18,8 +18,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ViewUpdateDelegate.h"
 #import "AppDelegate.h"
+#import <CoreGraphics/CoreGraphics.h>
 
-@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, ViewUpdateDelegate>
+@interface CustomerViewController () <locationManagerDelegate, GMSMapViewDelegate, ViewUpdateDelegate, CAAnimationDelegate>
 
 @property (nonatomic, strong) Restaurant * selectedRestaurant;
 @property (nonatomic, strong) LocationManager * locationManager;
@@ -89,6 +90,8 @@
     [self.view insertSubview: self.mapView atIndex: 0];
     [self.view insertSubview: self.queueView aboveSubview:mapView];
     
+    
+    
     mapView.settings.compassButton = YES;
     mapView.settings.myLocationButton = YES;
     
@@ -134,6 +137,7 @@
     self.mapView.camera = updatedCamera;
     
 }
+
 
 -(void)fetchRestaurantsWithURL:(NSString *)urlString{
     
@@ -218,7 +222,7 @@
 -(void)getRestaurantLocation
 {
     
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&type=restaurant&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=1000&type=restaurant&key=AIzaSyCPxkehcAiAEjrK-Ba6r2I7KR7vldh9dUM", self.locationManager.currentLocation.coordinate.latitude, self.locationManager.currentLocation.coordinate.longitude];
     
     [self fetchRestaurantsWithURL:urlString];
     
@@ -228,8 +232,6 @@
 -(void)passMarkerInfo{
     
     for (GoogleMapsRestaurant *restaurant in self.restaurants) {
-        
-        
         
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(restaurant.coordinate.latitude, restaurant.coordinate.longitude);
         RestaurantMarker *restaurantMarker = [RestaurantMarker markerWithPosition:position];
@@ -243,6 +245,7 @@
             restaurantMarker.iconView.backgroundColor = [UIColor purpleColor];
         }
         restaurantMarker.snippet = restaurant.rating;
+        
        
         restaurantMarker.map = self.mapView;
         
@@ -326,7 +329,7 @@
         
     }];
     
-    
+        
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"Join" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         [restaurant fetchIfNeeded];
@@ -342,6 +345,7 @@
         
         //Show the position in Queue indicator, unselect the map marker to hide the info window
         self.queueView.hidden = NO;
+        [self fadeInAnimation:self.queueView];
         [self updateQueueInfoWindow];
         self.mapView.selectedMarker = nil;
         
@@ -350,7 +354,7 @@
         if(channel == nil){
             channel = @"";
         }
-        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":[NSString stringWithFormat:@"%@ with %@ party size has been added to your Queue", self.currentCustomer.name, self.currentCustomer.partySize], @"channel":channel}];
+        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":[NSString stringWithFormat:@"%@ with party size of %@ has been added to your Queue", self.currentCustomer.name, self.currentCustomer.partySize], @"channel":channel}];
         
    
         
@@ -376,7 +380,7 @@
     [self.currentRestaurant removeCustomer:self.currentCustomer];
     
     //Send push notification to restaurant to update them
-    NSString *message = [NSString stringWithFormat:@"%@ with %@ has left your Queue", self.currentCustomer.name, self.currentCustomer.partySize];
+    NSString *message = [NSString stringWithFormat:@"%@ with party size of %@ has left your Queue", self.currentCustomer.name, self.currentCustomer.partySize];
     NSString *channel = [self.currentRestaurant.user fetchIfNeeded].username;
     if(channel == nil){
         channel = @"";
@@ -415,6 +419,16 @@
     }];
 }
 
+-(void)fadeInAnimation:(UIView *)aView {
+    
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionMoveIn;
+    transition.duration = 0.175f;
+    transition.delegate = self;
+    [aView.layer addAnimation:transition forKey:nil];
+}
+
+
 
 #pragma mark - ViewUpdateDelegate
 
@@ -424,6 +438,7 @@
     
     //Update the Customer view
 }
+
 
 
 /*
