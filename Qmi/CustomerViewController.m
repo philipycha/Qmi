@@ -354,7 +354,7 @@
         if(channel == nil){
             channel = @"";
         }
-        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":[NSString stringWithFormat:@"%@ with %@ party size has been added to your Queue", self.currentCustomer.name, self.currentCustomer.partySize], @"channel":channel}];
+        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":[NSString stringWithFormat:@"%@ with party size of %@ has been added to your Queue", self.currentCustomer.name, self.currentCustomer.partySize], @"channel":channel}];
         
    
         
@@ -380,7 +380,7 @@
     [self.currentRestaurant removeCustomer:self.currentCustomer];
     
     //Send push notification to restaurant to update them
-    NSString *message = [NSString stringWithFormat:@"%@ with %@ has left your Queue", self.currentCustomer.name, self.currentCustomer.partySize];
+    NSString *message = [NSString stringWithFormat:@"%@ with party size of %@ has left your Queue", self.currentCustomer.name, self.currentCustomer.partySize];
     NSString *channel = [self.currentRestaurant.user fetchIfNeeded].username;
     if(channel == nil){
         channel = @"";
