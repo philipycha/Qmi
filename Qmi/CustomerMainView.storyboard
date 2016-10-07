@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z6L-TD-mwJ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z6L-TD-mwJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -62,23 +62,41 @@
                                     <constraint firstItem="zj1-GE-czO" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="top" id="x4Z-Is-V6f"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhm-aj-F5j">
+                                <state key="normal" title="-"/>
+                                <connections>
+                                    <action selector="logOutButtonPressed:" destination="Z6L-TD-mwJ" eventType="touchUpInside" id="B5O-8t-p89"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Nhm-aj-F5j" secondAttribute="trailing" id="1f7-kP-KLa"/>
                             <constraint firstItem="Vo2-HD-hKu" firstAttribute="leading" secondItem="2JP-fM-LGi" secondAttribute="leadingMargin" id="8u0-t0-LUs"/>
+                            <constraint firstItem="Nhm-aj-F5j" firstAttribute="top" secondItem="XUk-P8-Y6m" secondAttribute="bottom" id="X4L-FB-lfd"/>
                             <constraint firstItem="2HN-W5-jRi" firstAttribute="top" secondItem="Vo2-HD-hKu" secondAttribute="bottom" constant="20" id="akP-77-dbU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="logOutButton" destination="Nhm-aj-F5j" id="OyG-Cq-uTD"/>
                         <outlet property="quePositionLabel" destination="X0I-9k-PXG" id="hfv-NQ-gim"/>
                         <outlet property="queueRestLabel" destination="dsl-Qt-DR2" id="4Vu-Kb-mjo"/>
                         <outlet property="queueView" destination="Vo2-HD-hKu" id="m6s-HX-8bo"/>
                         <outlet property="removeQueueButton" destination="L7F-Jx-CRL" id="C64-u9-Ch1"/>
+                        <segue destination="tZc-aK-gPN" kind="show" identifier="showLogInScreen" id="Ddc-Vz-gBF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oi6-X4-tsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-231.19999999999999" y="120.98950524737631"/>
+        </scene>
+        <!--LogIn-->
+        <scene sceneID="bUF-Ub-eQY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LogIn" id="tZc-aK-gPN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lx5-jo-RBE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="417" y="-248"/>
         </scene>
     </scenes>
     <resources>

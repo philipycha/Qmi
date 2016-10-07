@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *queueRestLabel;
 @property (weak, nonatomic) IBOutlet UILabel *quePositionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *removeQueueButton;
+@property (weak, nonatomic) IBOutlet UIButton *logOutButton;
 
 @end
 
@@ -90,7 +91,7 @@
     [self.view insertSubview: self.mapView atIndex: 0];
     [self.view insertSubview: self.queueView aboveSubview:mapView];
     
-    
+    [self.view bringSubviewToFront:self.logOutButton];
     
     mapView.settings.compassButton = YES;
     mapView.settings.myLocationButton = YES;
@@ -404,6 +405,10 @@
     [self updateQueueInfoWindow];
 }
 
+- (IBAction)logOutButtonPressed:(UIButton *)sender {
+    [User logOut];
+    [self performSegueWithIdentifier:@"showLogInScreen" sender:self];
+}
 
 #pragma mark - View Updating
 
