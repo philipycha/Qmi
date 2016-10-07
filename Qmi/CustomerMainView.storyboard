@@ -32,7 +32,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsl-Qt-DR2">
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -52,10 +52,10 @@
                                     <constraint firstItem="zj1-GE-czO" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" id="Eha-PB-n6Y"/>
                                     <constraint firstAttribute="bottom" secondItem="L7F-Jx-CRL" secondAttribute="bottom" id="NJP-AY-SJk"/>
                                     <constraint firstAttribute="height" constant="115" id="T7W-mi-paK"/>
-                                    <constraint firstItem="X0I-9k-PXG" firstAttribute="top" secondItem="dsl-Qt-DR2" secondAttribute="bottom" constant="15" id="W81-sT-X31"/>
                                     <constraint firstAttribute="trailing" secondItem="zj1-GE-czO" secondAttribute="trailing" id="WvE-4D-DmL"/>
                                     <constraint firstAttribute="bottom" secondItem="zj1-GE-czO" secondAttribute="bottom" id="fHN-SQ-B8D"/>
                                     <constraint firstAttribute="trailing" secondItem="dsl-Qt-DR2" secondAttribute="trailing" constant="86" id="hfW-Mh-o8E"/>
+                                    <constraint firstAttribute="bottom" secondItem="X0I-9k-PXG" secondAttribute="bottom" constant="20" id="kDS-Iw-M8K"/>
                                     <constraint firstItem="dsl-Qt-DR2" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" constant="31" id="o7r-eO-LbR"/>
                                     <constraint firstItem="X0I-9k-PXG" firstAttribute="leading" secondItem="Vo2-HD-hKu" secondAttribute="leading" constant="39" id="ruQ-Bf-jRD"/>
                                     <constraint firstAttribute="trailing" secondItem="L7F-Jx-CRL" secondAttribute="trailing" id="vQw-9Q-ZiZ"/>
