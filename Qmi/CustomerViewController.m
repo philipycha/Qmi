@@ -296,7 +296,7 @@
         CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
         infoWindow.RestaurantNameLabel.text = marker.title;
         infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", restaurantMarker.restaurant.numInQueue];
-        infoWindow.delegate = self;
+      //  infoWindow.delegate = self;
         [infoWindow showRating:marker.snippet];
         self.infoWindow = infoWindow;
         return infoWindow;
@@ -324,6 +324,7 @@
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         
         textField.placeholder = @"How Big is your party?";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
         sizeOfPartyTextField = textField;
         
     }];
@@ -353,9 +354,9 @@
         if(channel == nil){
             channel = @"";
         }
-        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"a new customer has been added to your Queue", @"channel":channel}];
+        [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":[NSString stringWithFormat:@"%@ with %@ party size has been added to your Queue", self.currentCustomer.name, self.currentCustomer.partySize], @"channel":channel}];
         
-        
+   
         
     }];
     
@@ -379,13 +380,13 @@
     [self.currentRestaurant removeCustomer:self.currentCustomer];
     
     //Send push notification to restaurant to update them
+    NSString *message = [NSString stringWithFormat:@"%@ with %@ has left your Queue", self.currentCustomer.name, self.currentCustomer.partySize];
     NSString *channel = [self.currentRestaurant.user fetchIfNeeded].username;
     if(channel == nil){
         channel = @"";
     }
-    [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":@"A customer has left your Queue", @"channel":channel}];
+    [PFCloud callFunction:@"sendPushNotification" withParameters:@{@"AlertText":message, @"channel":channel}];
     
-    self.currentCustomer = nil;
     
     [self updateQueueInfoWindow];
 }
@@ -394,17 +395,28 @@
 #pragma mark - View Updating
 
 -(void)updateQueueInfoWindow{
-    [self.currentCustomer fetchIfNeeded];
+    PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
+    [query whereKey:@"user" equalTo:[User currentUser]];
     
-    if (self.currentCustomer) {
-        self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
-        self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum + 1];
-    }
-    
-    else{
-        self.queueView.hidden = YES;
-        self.currentRestaurant = nil;
-    }
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+        if(objects){
+            self.currentCustomer = [objects firstObject];
+        }
+        else{
+            self.currentCustomer = nil;
+        }
+        
+        if (self.currentCustomer) {
+            self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
+            self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum + 1];
+        }
+        
+        else{
+            self.queueView.hidden = YES;
+            self.currentRestaurant = nil;
+        }
+    }];
 }
 
 -(void)fadeInAnimation:(UIView *)aView {
