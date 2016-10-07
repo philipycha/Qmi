@@ -19,19 +19,19 @@
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1zw-67-Mt6">
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="u1h-RX-V1Y"/>
+                        <constraint firstAttribute="width" constant="34" id="u1h-RX-V1Y"/>
                         <constraint firstAttribute="height" constant="34" id="wc2-YA-6bO"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5m1-c1-rgs">
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="b4Y-1q-xoR"/>
+                        <constraint firstAttribute="width" constant="34" id="b4Y-1q-xoR"/>
                         <constraint firstAttribute="height" constant="34" id="zDt-5Q-iyD"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7E-CM-bBu">
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="8IR-rF-2Xk"/>
+                        <constraint firstAttribute="width" constant="34" id="8IR-rF-2Xk"/>
                         <constraint firstAttribute="height" constant="34" id="VBP-Tx-NDa"/>
                     </constraints>
                 </imageView>
@@ -56,13 +56,13 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZC-E7-Qvi">
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="6fU-wS-rEn"/>
+                        <constraint firstAttribute="width" constant="34" id="6fU-wS-rEn"/>
                         <constraint firstAttribute="height" constant="34" id="XPt-d2-1ga"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZdU-Y4-aNS">
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="JBo-SC-8Vw"/>
+                        <constraint firstAttribute="width" constant="34" id="JBo-SC-8Vw"/>
                         <constraint firstAttribute="height" constant="34" id="OUa-ni-Q2S"/>
                     </constraints>
                 </imageView>
@@ -74,14 +74,14 @@
                 <constraint firstItem="U7E-CM-bBu" firstAttribute="top" secondItem="zZC-E7-Qvi" secondAttribute="bottom" constant="-4" id="AWe-G7-FN9"/>
                 <constraint firstAttribute="bottom" secondItem="LI2-VD-AVY" secondAttribute="bottom" id="GZb-tw-cNP"/>
                 <constraint firstItem="LI2-VD-AVY" firstAttribute="leading" secondItem="NAs-EK-r5b" secondAttribute="trailing" constant="-161" id="Ghb-gE-wBb"/>
-                <constraint firstItem="U7E-CM-bBu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Lhp-mO-xUs"/>
-                <constraint firstItem="ZdU-Y4-aNS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="Ook-ej-05M"/>
-                <constraint firstItem="5m1-c1-rgs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="RNI-sc-dO3"/>
-                <constraint firstItem="NAs-EK-r5b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="WOr-SB-C0X"/>
+                <constraint firstItem="U7E-CM-bBu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="Lhp-mO-xUs"/>
+                <constraint firstItem="ZdU-Y4-aNS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="34" id="Ook-ej-05M"/>
+                <constraint firstItem="5m1-c1-rgs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="RNI-sc-dO3"/>
+                <constraint firstItem="NAs-EK-r5b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="WOr-SB-C0X"/>
                 <constraint firstItem="ZdU-Y4-aNS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZlL-CQ-vD2"/>
-                <constraint firstItem="1zw-67-Mt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="dvI-4U-WWy"/>
+                <constraint firstItem="1zw-67-Mt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="62" id="dvI-4U-WWy"/>
                 <constraint firstAttribute="trailing" secondItem="LI2-VD-AVY" secondAttribute="trailing" id="ert-bR-IrD"/>
-                <constraint firstItem="zZC-E7-Qvi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="rnU-RN-E0V"/>
+                <constraint firstItem="zZC-E7-Qvi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="62" id="rnU-RN-E0V"/>
                 <constraint firstItem="LI2-VD-AVY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ySY-Jx-QoU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
