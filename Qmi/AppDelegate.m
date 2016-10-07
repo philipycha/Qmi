@@ -134,6 +134,8 @@
     
     //reset badge icon
     application.applicationIconBadgeNumber = 0;
+    
+    
 }
 
 

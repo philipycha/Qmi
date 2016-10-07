@@ -114,6 +114,20 @@
         }
     }];
     
+    
+    PFQuery *query = [PFQuery queryWithClassName:[Customer parseClassName]];
+    [query whereKey:@"user" equalTo:[User currentUser]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(objects){
+            self.currentCustomer = [objects firstObject];
+            self.currentRestaurant = self.currentCustomer.queueRestaurant;
+            [self updateQueueInfoWindow];
+        }
+    }];
+    
+    
+    
 }
 
 
@@ -295,7 +309,7 @@
     if(restaurantMarker.restaurant){
         CustomInfoWindowView *infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"CustomInfoWindow" owner:self options:nil] objectAtIndex:0];
         infoWindow.RestaurantNameLabel.text = marker.title;
-        infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", restaurantMarker.restaurant.numInQueue];
+        infoWindow.QueueSizeLabel.text = [NSString stringWithFormat:@"%d", [restaurantMarker.restaurant fetchIfNeeded].numInQueue];
       //  infoWindow.delegate = self;
         [infoWindow showRating:marker.snippet];
         self.infoWindow = infoWindow;
@@ -344,8 +358,7 @@
         
         
         //Show the position in Queue indicator, unselect the map marker to hide the info window
-        self.queueView.hidden = NO;
-        [self fadeInAnimation:self.queueView];
+        
         [self updateQueueInfoWindow];
         self.mapView.selectedMarker = nil;
         
@@ -381,7 +394,7 @@
     
     //Send push notification to restaurant to update them
     NSString *message = [NSString stringWithFormat:@"%@ with party size of %@ has left your Queue", self.currentCustomer.name, self.currentCustomer.partySize];
-    NSString *channel = [self.currentRestaurant.user fetchIfNeeded].username;
+    NSString *channel = [[self.currentRestaurant fetchIfNeeded].user fetchIfNeeded].username;
     if(channel == nil){
         channel = @"";
     }
@@ -408,6 +421,8 @@
         }
         
         if (self.currentCustomer) {
+            self.queueView.hidden = NO;
+            [self fadeInAnimation:self.queueView];
             self.queueRestLabel.text = [self.currentCustomer.queueRestaurant fetchIfNeeded].name;
             self.quePositionLabel.text = [NSString stringWithFormat: @"%d",[self.currentCustomer fetchIfNeeded].queueNum + 1];
         }
