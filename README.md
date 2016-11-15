@@ -17,6 +17,6 @@ The application has two main interfaces:
 - The Map View shows nearby restaurants, highlighting ones which support Qmi. When selected Qmi restaurants show the current queue size and a star rating for the restaurant. A user can queue themseleves at a selected restaurant which updates the queue and sends a notification the restaurant queued at. While a user is queued at a restaurant a floating menu pops up showing their position in the queue and an option to leave the queue.
 
 CocoaPods:
-Google Maps
-Google Places
-Parse
+-Google Maps
+-Google Places
+-Parse
